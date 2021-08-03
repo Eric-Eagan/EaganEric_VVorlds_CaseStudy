@@ -2,6 +2,7 @@ package vvorlds.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 //test
 @Controller
 public class HomeController {
@@ -24,5 +25,10 @@ public class HomeController {
 	@GetMapping("/resources.html")
 	public String showResourcesPage() {
 		return "resources";
+	}
+	
+	@PostMapping("/login")
+	public String validateLogin() {
+		return "redirect:/login.html";
 	}
 }
