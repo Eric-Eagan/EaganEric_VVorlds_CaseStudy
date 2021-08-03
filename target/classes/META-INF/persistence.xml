@@ -4,7 +4,7 @@
 		<class>vvorlds.models.User</class>
 		<class>vvorlds.models.Account</class>
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mariadb://localhost:3307/simpleformDB" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mariadb://localhost:3307/VVorldsDB" />
 			<property name="javax.persistence.jdbc.user" value="root" />
 			<property name="javax.persistence.jdbc.password" value="MNbvJHgfUYtr&amp;^54" />
 			<property name="javax.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver" />

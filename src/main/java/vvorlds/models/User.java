@@ -5,6 +5,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
@@ -13,6 +16,10 @@ import javax.persistence.GenerationType;
 
 @Entity
 @Table(name = "users")
+@NamedQueries({
+	@NamedQuery(name = "GetAllUsers", query = "SELECT u FROM User u"),
+    @NamedQuery(name="GetUserByEmail", query="SELECT u FROM User u WHERE u.username = :username")
+})
 public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
