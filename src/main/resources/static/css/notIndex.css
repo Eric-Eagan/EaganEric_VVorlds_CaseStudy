@@ -7,19 +7,14 @@ h1 {
 	margin-bottom: -130px;
 }
 
-.menu
-.menu_item nav ul {
-	padding-top: 80px;
-}
-
 .content {
-	width: 800px;
+	width: 500px;
 	background-color: DarkGoldenRod;
 	box-shadow: 4px 4px 0px rgba(0, 0, 0, .5);
 	border: 2px solid black;
 	display: flex;
 	justify-content: center;
-	padding: 10px;
+	padding: 20px;
 }
 
 #logo {

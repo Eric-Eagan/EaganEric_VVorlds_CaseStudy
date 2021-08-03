@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="css/default.css" >
     <link rel="stylesheet" type="text/css" href="css/notIndex.css" >
     <link rel="stylesheet" type="text/css" href="css/login.css" >
+    <script type="text/javascript" src="js/login.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -18,7 +19,7 @@
 	<div class="container">
 		<div class="menu">
 			<div class="menu_item" id="logo">
-	        	<a href="#">
+	        	<a href="./index.html">
 					<img src="img/map.jpg" alt="Logo">
 				</a>
 	        </div>
@@ -55,14 +56,14 @@
 							margin-right: 50px;">
 					LOG IN
 				</h2>
-				<form class="user_input"
+				<form name="user_input" method="post"
 				style="display:flex; flex-direction: column; padding-bottom:10px">
-					<input type="text" name="userName" placeholder="Username">
-					<input type="password" name="password" placeholder="Password">
-					<input type="submit" name="login" value="Log In" onclick="alert('Unimplemented Login')">
+					<input type="text" name="userName" id="UN" placeholder="Username">
+					<input type="password" name="password" id="PW" placeholder="Password">
+					<input type="submit" name="login" onclick="logMeIn()" value="Log In">
 				</form>
-				<a href="#" id="forgotPass">
-					Forgot Password
+				<a href="#" id="register">
+					Create Account
 				</a>
 			</div>
 		</div>

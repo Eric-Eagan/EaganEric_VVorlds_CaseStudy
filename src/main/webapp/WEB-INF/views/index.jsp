@@ -8,19 +8,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VVorlds</title>
     <link rel="stylesheet" type="text/css" href="css/default.css" >
-    <link rel="stylesheet" type="text/css" href="css/index.css" >
+    <style>
+		.head_container {
+			display: flex;
+			justify-content: center;
+			height: auto;
+		}
+
+		h1 {
+			justify-content: center;
+			width: 900px;
+			padding-top: 60px;
+			padding-bottom: 50px;
+			margin-top: -153px;
+		}
+
+		#home {
+			background-color: gold;
+			color: #1c1808;
+		}
+	</style>
 </head>
 <body>
-	<div class="menu_container" style="display: flex; justify-content: center;">
+	<div class="menu_container" style="margin-top: 31px;">
 		<div class="menu">
 			<div class="menu_item">
-	        	<a href="#">
-					<img src="img/map.jpg" alt="Logo">
+	        	<a href="./index.html">
+					<img src="img/map.jpg" alt="Logo" style="margin-top: 40px;">
 				</a>
 	        </div>
 			<div class="menu_item">
 				<nav>
-					<ul>
+					<ul style="padding-bottom: 42px">
 						<li>
 							<a id="home" href="./index.html">Home</a>
 						</li>
@@ -41,7 +60,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="head_container">
+	<div class="container">
 		<h1>VVorlds</h1>
 	</div>
 </body>

@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="css/default.css" >
     <link rel="stylesheet" type="text/css" href="css/notIndex.css" >
     <link rel="stylesheet" type="text/css" href="css/resources.css" >
+    <script type="text/javascript" src="js/resources.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -18,7 +19,7 @@
 	<div class="container">
 		<div class="menu">
 			<div class="menu_item" id="logo">
-	        	<a href="#">
+	        	<a href="./index.html">
 					<img src="img/map.jpg" alt="Logo">
 				</a>
 	        </div>
@@ -49,6 +50,16 @@
 		<div class="content" style="width: 100%; max-width: 1000px">
 			<div class="vert_block" style="width: 100%;">
 				<h2>Resources</h2>
+				<div class="container">
+					<form name="resource_form">
+						<select class="select-css" onchange="updateResources();" id="RS" name="resource_subject">
+							<option value="" disabled selected>Select Topic</option>
+						</select>
+						<script>
+							setupSelect();
+						</script>
+					</form>
+				</div>
 				<table style="width: 100%;">
 					<colgroup>
 					    <col span="1" style="width: 5%;">
@@ -62,53 +73,9 @@
 			        </thead>
 			        <tbody>
 				        <tr>
-				          	<td>Tectonics Basics</td>
-				          	<td class="video_cell">
-							  	<iframe width="100%" height="auto" allowfullscreen
-							  	src="https://www.youtube.com/embed/x_Tn66PvTn4" >
-						  	  	</iframe>
-						  	</td>
-				        </tr>
-				        <tr>
-				          	<td>Tectonics Details</td>
-				          	<td class="video_cell">
-							  	<iframe width="100%" height="auto" allowfullscreen
-							  	src="https://www.youtube.com/embed/yGMKmbGTEHQ" >
-						  	  	</iframe>
-						  	</td>
-				        </tr>
-				        <tr>
-				          	<td>Atmospheric Circulation</td>
-				          	<td class="video_cell">
-							  	<iframe width="100%" height="auto" allowfullscreen
-							  	src="https://www.youtube.com/embed/LifRswfCxFU" >
-						  	  	</iframe>
-						  	</td>
-				        </tr>
-				        <tr>
-				          	<td>Ocean Currents</td>
-				          	<td class="video_cell">
-							  	<iframe width="100%" height="auto" allowfullscreen
-							  	src="https://www.youtube.com/embed/n_E9UShtyY8" >
-						  	  	</iframe>
-						  	</td>
-				        </tr>
-				        <tr>
-				          	<td>Climates Equatorial</td>
-				          	<td class="video_cell">
-							  	<iframe width="100%" height="auto" allowfullscreen
-							  	src="https://www.youtube.com/embed/5lCbxMZJ4zA" >
-						  	  	</iframe>
-						  	</td>
-				        </tr>
-				        <tr>
-				          	<td>Climates Intermediate/Polar</td>
-				          	<td class="video_cell">
-							  	<iframe width="100%" height="auto" allowfullscreen
-							  	src="https://www.youtube.com/embed/fag48Nh8PXE" >
-						  	  	</iframe>
-						  	</td>
-				        </tr>
+							<td></td>
+							<td style="padding-bottom: 10px;">No Topic Selected</td>
+						</tr>
 					</tbody>
 			    </table>
 			</div>

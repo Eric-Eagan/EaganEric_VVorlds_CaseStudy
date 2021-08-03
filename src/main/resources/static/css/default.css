@@ -7,13 +7,12 @@ body {
 
 a {
 	text-decoration: none;
-	color: white;
+	color: black;
 	background-color: DarkGoldenRod;
 }
 
 a:hover {
 	background-color: gold;
-	color: #1c1808;
 }
 
 a:active {
@@ -85,6 +84,7 @@ body > div {
 .menu_item nav ul {
 	display: flex;
 	flex-wrap: wrap;
+	padding-top: 80px;
 }
 
 .menu
