@@ -1,13 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register</title>
     <link rel="stylesheet" type="text/css" href="css/default.css" >
     <link rel="stylesheet" type="text/css" href="css/notIndex.css" >
     <link rel="stylesheet" type="text/css" href="css/form.css" >
+	<style>
+		input {
+			padding-top: 5px;
+			padding-bottom: 5px;
+			margin-top: 5px;
+			margin-bottom: 5px;
+		}
+	</style>
 	<script type="text/javascript" src="js/login.js"></script>
 </head>
 <body>
@@ -52,19 +62,26 @@
 							border: 2px solid black;
 							margin-left: 50px;
 							margin-right: 50px;">
-					LOG IN
+					REGISTER
 				</h2>
-				<form name="user_input" action="login" method="post"
+				<form name="user_input" action="register" method="post"
 				style="display:flex; flex-direction: column; padding-bottom:10px">
 					<input type="text" name="userName" id="UN" placeholder="Username">
 					<input type="password" name="password" id="PW" placeholder="Password">
-					<input type="submit" name="submit" onclick="logMeIn()" value="- Log In -">
+					<input type="password" name="passwordConfirm" id="PWC" placeholder="Confirm Password">
+					<input type="text" name="firstName" id="UN" placeholder="First Name">
+					<input type="text" name="lastName" id="UN" placeholder="Last Name">
+					<input type="text" name="email" id="UN" placeholder="Email">
+					<input type="text" name="address" id="UN" placeholder="Address">
+					<input type="text" name="phone" id="UN" placeholder="Phone">
+					<input type="submit" name="submit" onclick="logMeIn()" value="- Submit -">
 				</form>
-				<a href="./register.html" id="register">
-					Create Account
+				<a href="./login.html" id="register">
+					Already Have Account
 				</a>
 			</div>
 		</div>
 	</div>
 </body>
 </html>
+

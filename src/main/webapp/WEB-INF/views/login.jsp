@@ -9,8 +9,8 @@
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="css/default.css" >
     <link rel="stylesheet" type="text/css" href="css/notIndex.css" >
-    <link rel="stylesheet" type="text/css" href="css/login.css" >
-    <script type="text/javascript" src="js/login.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/form.css" >
+	<script type="text/javascript" src="js/login.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -48,7 +48,7 @@
 	</div>
 	<div class="container" style="margin-top:-70px;">
 		<div class="content">
-			<div class="login_container">
+			<div class="form_container">
 				<h2 style="background-color: darkgoldenrod;
 							box-shadow: 4px 4px 0px rgba(0, 0, 0, .5);
 							border: 2px solid black;
@@ -60,9 +60,9 @@
 				style="display:flex; flex-direction: column; padding-bottom:10px">
 					<input type="text" name="userName" id="UN" placeholder="Username">
 					<input type="password" name="password" id="PW" placeholder="Password">
-					<input type="submit" name="login" onclick="logMeIn()" value="Log In">
+					<input type="submit" name="submit" onclick="logMeIn()" value="- Log In -">
 				</form>
-				<a href="#" id="register">
+				<a href="./register.html" id="register">
 					Create Account
 				</a>
 			</div>
@@ -70,3 +70,4 @@
 	</div>
 </body>
 </html>
+
