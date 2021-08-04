@@ -53,10 +53,13 @@ public class HomeController {
 		User foundUser = us.findUserByUsername(paramMap.get("userName")[0]);
 		
 		if (foundUser == null || !foundUser.getPassword().equals(paramMap.get("password")[0])) {
-			System.out.println("Bad Login");
-			return null;
+			request.setAttribute("success", 0);
+			return "loginAck";
 		}
-		return "redirect:/index.html";
+
+		request.setAttribute("username", foundUser.getUsername());
+		request.setAttribute("success", 1);
+		return "loginAck";
 	}
 	
 	@PostMapping("/register")
