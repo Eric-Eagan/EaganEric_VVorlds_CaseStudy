@@ -43,6 +43,16 @@ body > div {
 	opacity: .75;
 }
 
+:-ms-input-placeholder {
+	color: black;
+	opacity: .75;
+}
+
+::-ms-input-placeholder {
+	color: black;
+	opacity: .75;
+}
+
 .container {
 	display: flex;
 	justify-content: center;

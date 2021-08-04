@@ -37,11 +37,11 @@ public class User {
 	public User() {
 	}
 	
-	public User(String username, String password, Account account) {
+	public User(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;
-		this.account = account;
+		this.account = new Account();
 	}
 
 	public String getUsername() {

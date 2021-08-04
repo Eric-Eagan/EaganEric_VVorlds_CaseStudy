@@ -60,7 +60,7 @@
 				style="display:flex; flex-direction: column; padding-bottom:10px">
 					<input type="text" name="userName" id="UN" placeholder="Username">
 					<input type="password" name="password" id="PW" placeholder="Password">
-					<input type="submit" name="submit" onclick="logMeIn()" value="- Log In -">
+					<input type="submit" name="submit" value="- Log In -">
 				</form>
 				<a href="./register.html" id="register">
 					Create Account

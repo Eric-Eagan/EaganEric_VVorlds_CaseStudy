@@ -3,6 +3,7 @@ package vvorlds.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import vvorlds.models.Account;
 import vvorlds.models.User;
 import vvorlds.repositories.UserRepository;
 
@@ -23,8 +24,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void createUser(User newUser) {
-		ur.createUser(newUser);
+	public void createUser(User newUser, Account newAcc) {
+		ur.createUser(newUser, newAcc);
 	}
 
 	@Override

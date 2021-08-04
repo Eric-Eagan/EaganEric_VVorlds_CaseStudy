@@ -17,6 +17,15 @@
 			margin-top: 5px;
 			margin-bottom: 5px;
 		}
+		
+		#SBM {
+			border-color: gray;
+		}
+		
+		#SBM:hover {
+			background-color: var(--submit-hover-bckgnd);
+			border-color: var(--submit-hover-brdr);
+		}
 	</style>
 	<script type="text/javascript" src="js/login.js"></script>
 </head>
@@ -66,15 +75,20 @@
 				</h2>
 				<form name="user_input" action="register" method="post"
 				style="display:flex; flex-direction: column; padding-bottom:10px">
-					<input type="text" name="userName" id="UN" placeholder="Username">
-					<input type="password" name="password" id="PW" placeholder="Password">
-					<input type="password" name="passwordConfirm" id="PWC" placeholder="Confirm Password">
-					<input type="text" name="firstName" id="UN" placeholder="First Name">
-					<input type="text" name="lastName" id="UN" placeholder="Last Name">
-					<input type="text" name="email" id="UN" placeholder="Email">
-					<input type="text" name="address" id="UN" placeholder="Address">
-					<input type="text" name="phone" id="UN" placeholder="Phone">
-					<input type="submit" name="submit" onclick="logMeIn()" value="- Submit -">
+					<input type="text" name="userName" id="UN" placeholder="Username" onKeyUp="verify()">
+					<input type="password" name="password" id="PW" placeholder="Password" onKeyUp="verify()">
+					<input type="password" name="passwordConfirm" id="PWC" placeholder="Confirm Password" onKeyUp="verify()">
+					<input type="text" name="firstName" id="FN" placeholder="First Name">
+					<input type="text" name="lastName" id="LN" placeholder="Last Name">
+					<input type="text" name="email" id="EM" placeholder="Email">
+					<input type="text" name="address" id="AD" placeholder="Address">
+					<input type="text" name="phone" id="PN" placeholder="Phone">
+					<input type="submit" name="submit" id="SBM" disabled value="- Submit -">
+					<script>
+						let subButton = document.querySelector("#SBM");
+						subButton.style.setProperty("--submit-hover-bckgnd", "darkgoldenrod");
+						subButton.style.setProperty("--submit-hover-brdr", "gray");
+					</script>
 				</form>
 				<a href="./login.html" id="register">
 					Already Have Account

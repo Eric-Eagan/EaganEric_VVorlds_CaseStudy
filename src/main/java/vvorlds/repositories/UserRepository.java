@@ -9,6 +9,7 @@ import jakarta.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
+import vvorlds.models.Account;
 import vvorlds.models.User;
 
 @Repository
@@ -42,10 +43,11 @@ public class UserRepository {
 		return rs.get(0);
 	}
 	
-	public void createUser(User newUser) {
+	public void createUser(User newUser, Account newAcc) {
 		EntityManager em=emFactory.createEntityManager();  
 		
 		em.getTransaction().begin();
+		em.persist(newUser);
 		em.persist(newUser);
 		em.getTransaction().commit();
 		

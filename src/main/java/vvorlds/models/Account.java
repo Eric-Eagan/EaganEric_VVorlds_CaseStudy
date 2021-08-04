@@ -33,11 +33,11 @@ public class Account {
 	public Account() {
 	}
 	
-	public Account(int userId, String firstName, String lastName, String address, String phone, User user) {
+	public Account(String firstName, String lastName, String email, String address, String phone, User user) {
 		super();
-		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.email = email;
 		this.address = address;
 		this.phone = phone;
 		this.user = user;
