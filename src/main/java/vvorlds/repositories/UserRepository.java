@@ -2,10 +2,10 @@ package vvorlds.repositories;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
@@ -13,20 +13,20 @@ import vvorlds.models.User;
 
 @Repository
 public class UserRepository {
+	
+	private EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("VVorlds");
+	
 	public User findUserById(int id) {
-		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("VVorlds");
 		EntityManager em = emFactory.createEntityManager();
 		
 		User user = em.find(User.class, id);
 		
 		em.close();
-		emFactory.close();
 		
 		return user;
 	}
 	
 	public User findUserByUsername(String uName) {
-		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("VVorlds");
 		EntityManager em = emFactory.createEntityManager();
 		
 		TypedQuery<User> tq = em.createNamedQuery("FindUserByUsername", User.class);
@@ -38,13 +38,11 @@ public class UserRepository {
 		}
 		
 		em.close();
-		emFactory.close();
 
 		return rs.get(0);
 	}
 	
 	public void createUser(User newUser) {
-		EntityManagerFactory emFactory=Persistence.createEntityManagerFactory("VVorlds");  
 		EntityManager em=emFactory.createEntityManager();  
 		
 		em.getTransaction().begin();
@@ -52,6 +50,5 @@ public class UserRepository {
 		em.getTransaction().commit();
 		
 		em.close();
-		emFactory.close( );
 	}
 }

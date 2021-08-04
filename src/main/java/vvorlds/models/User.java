@@ -1,24 +1,24 @@
 package vvorlds.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.Table;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
 @Entity
 @Table(name = "users")
 @NamedQueries({
-	@NamedQuery(name = "GetAllUsers", query = "SELECT u FROM User u"),
-    @NamedQuery(name="GetUserByEmail", query="SELECT u FROM User u WHERE u.username = :username")
+	@NamedQuery(name = "FindAllUsers", query = "SELECT u FROM User u"),
+    @NamedQuery(name="FindUserByUsername", query="SELECT u FROM User u WHERE u.username = :username")
 })
 public class User {
 	@Id
@@ -70,5 +70,10 @@ public class User {
 
 	public int getId() {
 		return id;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + "]";
 	}
 }

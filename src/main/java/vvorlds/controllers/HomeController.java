@@ -1,5 +1,9 @@
 package vvorlds.controllers;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import vvorlds.models.User;
 import vvorlds.services.UserService;
-//test
 @Controller
 public class HomeController {
 	private UserService us;
@@ -39,13 +42,20 @@ public class HomeController {
 	}
 	
 	@PostMapping("/login")
-	public String validateLogin(@RequestParam String userName, @RequestParam String password) {
-		User foundUser = us.findUserByUsername(userName);
+	public String validateLogin(HttpServletRequest request) {
+		Map<String, String[]> paramMap = request.getParameterMap();
 		
-		if (foundUser == null || foundUser.getPassword().equals(password)) {
-			return "redirect:/login.html";
+		User foundUser = us.findUserByUsername(paramMap.get("userName")[0]);
+		
+		if (foundUser == null || !foundUser.getPassword().equals(paramMap.get("password")[0])) {
+			return null;
 		}
-		
 		return "redirect:/index.html";
+	}
+	
+	@PostMapping("/register")
+	public String registerUser(HttpServletRequest request) {
+		Map<String, String[]> paramMap = request.getParameterMap();
+		return null;
 	}
 }
