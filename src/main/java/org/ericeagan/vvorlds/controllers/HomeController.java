@@ -1,10 +1,14 @@
-package org.vvorlds.controllers;
+package org.ericeagan.vvorlds.controllers;
 
 import java.util.Collection;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.ericeagan.vvorlds.models.Account;
+import org.ericeagan.vvorlds.models.User;
+import org.ericeagan.vvorlds.services.AccountService;
+import org.ericeagan.vvorlds.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,10 +17,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.vvorlds.models.Account;
-import org.vvorlds.models.User;
-import org.vvorlds.services.AccountService;
-import org.vvorlds.services.UserService;
 
 @Controller
 public class HomeController {

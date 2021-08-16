@@ -1,6 +1,6 @@
-package org.vvorlds.services;
+package org.ericeagan.vvorlds.services;
 
-import org.vvorlds.models.User;
+import org.ericeagan.vvorlds.models.User;
 
 public interface UserService {
 	User save(User user);

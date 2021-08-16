@@ -1,6 +1,6 @@
-package org.vvorlds.repositories;
+package org.ericeagan.vvorlds.repositories;
 
-import org.vvorlds.models.User;
+import org.ericeagan.vvorlds.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Integer> {

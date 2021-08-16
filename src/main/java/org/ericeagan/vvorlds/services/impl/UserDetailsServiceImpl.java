@@ -1,8 +1,8 @@
-package org.vvorlds.services.impl;
+package org.ericeagan.vvorlds.services.impl;
 
-import org.vvorlds.models.User;
-import org.vvorlds.repositories.UserRepository;
-import org.vvorlds.security.CurrentUser;
+import org.ericeagan.vvorlds.models.User;
+import org.ericeagan.vvorlds.repositories.UserRepository;
+import org.ericeagan.vvorlds.security.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,4 +1,4 @@
-package org.vvorlds.models;
+package org.ericeagan.vvorlds.models;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

@@ -1,4 +1,4 @@
-package org.vvorlds;
+package org.ericeagan.vvorlds;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

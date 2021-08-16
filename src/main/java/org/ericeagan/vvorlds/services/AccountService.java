@@ -1,6 +1,6 @@
-package org.vvorlds.services;
+package org.ericeagan.vvorlds.services;
 
-import org.vvorlds.models.Account;
+import org.ericeagan.vvorlds.models.Account;
 
 public interface AccountService {
 	Account save(Account acc);

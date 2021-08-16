@@ -1,7 +1,7 @@
-package org.vvorlds.repositories;
+package org.ericeagan.vvorlds.repositories;
 
+import org.ericeagan.vvorlds.models.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.vvorlds.models.Account;
 
 public interface AccountRepository extends JpaRepository<Account, Integer> {
 	Account getById(Integer id);

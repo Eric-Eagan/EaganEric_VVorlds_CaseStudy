@@ -1,11 +1,11 @@
-package org.vvorlds.services.impl;
+package org.ericeagan.vvorlds.services.impl;
 
+import org.ericeagan.vvorlds.models.User;
+import org.ericeagan.vvorlds.repositories.UserRepository;
+import org.ericeagan.vvorlds.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.vvorlds.models.User;
-import org.vvorlds.repositories.UserRepository;
-import org.vvorlds.services.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {

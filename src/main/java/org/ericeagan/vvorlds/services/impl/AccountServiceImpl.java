@@ -1,10 +1,10 @@
-package org.vvorlds.services.impl;
+package org.ericeagan.vvorlds.services.impl;
 
+import org.ericeagan.vvorlds.models.Account;
+import org.ericeagan.vvorlds.repositories.AccountRepository;
+import org.ericeagan.vvorlds.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.vvorlds.models.Account;
-import org.vvorlds.repositories.AccountRepository;
-import org.vvorlds.services.AccountService;
 
 @Service
 public class AccountServiceImpl implements AccountService {
