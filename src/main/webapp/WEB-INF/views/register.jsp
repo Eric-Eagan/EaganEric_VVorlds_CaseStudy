@@ -34,34 +34,7 @@
 		<h1>VVorlds</h1>
 	</div>
 	<div class="container">
-		<div class="menu">
-			<div class="menu_item" id="logo">
-	        	<a href="./index.html">
-					<img src="img/map.jpg" alt="Logo">
-				</a>
-	        </div>
-			<div class="menu_item">
-				<nav>
-					<ul>
-						<li>
-							<a id="home" href="./index.html">Home</a>
-						</li>
-						<li>
-							<a id="docs" href="#">Documents</a>
-						</li>
-						<li>
-							<a id="res" href="./resources.html">Resources</a>
-						</li>
-						<li>
-							<a id="about" href="#">About</a>
-						</li>
-						<li>
-							<a id="login" href="./login.html">Login</a>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		</div>
+		<%@ include file="html/menu.html" %>
 	</div>
 	<div class="container" style="margin-top:-70px;">
 		<div class="content">
@@ -73,7 +46,7 @@
 							margin-right: 50px;">
 					REGISTER
 				</h2>
-				<form name="user_input" action="register" method="post"
+				<form name="user_input" action="registerNewUser" method="post"
 				style="display:flex; flex-direction: column; padding-bottom:10px">
 					<input type="text" name="userName" id="UN" placeholder="Username" onKeyUp="verify()">
 					<input type="password" name="password" id="PW" placeholder="Password" onKeyUp="verify()">
@@ -90,7 +63,7 @@
 						subButton.style.setProperty("--submit-hover-brdr", "gray");
 					</script>
 				</form>
-				<a href="./login.html" id="register">
+				<a href="./login" id="register">
 					Already Have Account
 				</a>
 			</div>

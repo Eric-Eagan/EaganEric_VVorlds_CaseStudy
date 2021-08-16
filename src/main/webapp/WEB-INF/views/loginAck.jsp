@@ -13,14 +13,14 @@
 		<h1><%= request.getAttribute("username") %>, Successful Login</h1>
 	</div>
 	<div class="container" style="margin-top: 110px">
-		<button onclick="location.href = './index.html';">Return</button>
+		<button onclick="location.href = './';">Return</button>
 	</div>
 	
 	<script>
 		console.log("running script");
 		if(<%= request.getAttribute("success") %> == 0) {
 			document.querySelector("h1").textContent = "Unsuccessful Login, Try again"
-			document.querySelector("button").setAttribute("onclick", "location.href = './login.html';"); 
+			document.querySelector("button").setAttribute("onclick", "location.href = './login';"); 
 		}
 	</script>
 </body>
