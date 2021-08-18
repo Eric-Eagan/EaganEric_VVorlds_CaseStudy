@@ -20,7 +20,7 @@ public class CurrentUser implements UserDetails {
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Collections.singleton(new SimpleGrantedAuthority("USER"));//user.getUserRole()));
+		return Collections.singleton(new SimpleGrantedAuthority(user.getUserRole()));
 	}
 
 	@Override

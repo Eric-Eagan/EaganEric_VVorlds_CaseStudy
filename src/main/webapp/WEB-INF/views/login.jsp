@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,6 +30,11 @@
 							margin-right: 50px;">
 					LOG IN
 				</h2>
+				<p>
+					<c:if test="${not empty param['error']}"> 
+						<c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" /> 
+					</c:if> 
+				</p>
 				<form name="user_input" action="login" method="post"
 				style="display:flex; flex-direction: column; padding-bottom:10px">
 					<input type="text" name="username" id="UN" placeholder="Username">

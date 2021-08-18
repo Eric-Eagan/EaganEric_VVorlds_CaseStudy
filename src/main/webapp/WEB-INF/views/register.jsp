@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,23 +47,44 @@
 							margin-right: 50px;">
 					REGISTER
 				</h2>
-				<form name="user_input" action="registerNewUser" method="post"
-				style="display:flex; flex-direction: column; padding-bottom:10px">
-					<input type="text" name="userName" id="UN" placeholder="Username" onKeyUp="verify()">
-					<input type="password" name="password" id="PW" placeholder="Password" onKeyUp="verify()">
-					<input type="password" name="passwordConfirm" id="PWC" placeholder="Confirm Password" onKeyUp="verify()">
-					<input type="text" name="firstName" id="FN" placeholder="First Name">
-					<input type="text" name="lastName" id="LN" placeholder="Last Name">
-					<input type="text" name="email" id="EM" placeholder="Email">
-					<input type="text" name="address" id="AD" placeholder="Address">
-					<input type="text" name="phone" id="PN" placeholder="Phone">
-					<input type="submit" name="submit" id="SBM" disabled value="- Submit -">
+				<form:form name="user_input" action="registerNewUser" method="post"
+				style="display:flex; flex-direction: column; padding-bottom:10px"
+				modelAttribute="newUser">
+					<div class="input_block">
+						<form:errors path="username" cssClass="error" />
+						<form:input type="text" path="username" name="username" id="UN" placeholder="Username" onKeyUp="verify()"/>
+					</div>
+					<div class="input_block">
+						<form:errors path="password" cssClass="error" />
+						<form:input type="password" path="password" name="password" id="PW" placeholder="Password" onKeyUp="verify()"/>
+					</div>
+					<div class="input_block">
+						<input type="password" name="passwordConfirm" id="PWC" placeholder="Confirm Password" onKeyUp="verify()">
+					</div>
+					<div class="input_block">
+						<input type="text" name="firstName" id="FN" placeholder="First Name">
+					</div>
+					<div class="input_block">
+						<input type="text" name="lastName" id="LN" placeholder="Last Name">
+					</div>
+					<div class="input_block">
+						<input type="text" name="email" id="EM" placeholder="Email">
+					</div>
+					<div class="input_block">
+						<input type="text" name="address" id="AD" placeholder="Address">
+					</div>
+					<div class="input_block">
+						<input type="text" name="phone" id="PN" placeholder="Phone">
+					</div>
+					<div class="input_block">
+						<input type="submit" name="submit" id="SBM" disabled value="- Submit -">
+					</div>
 					<script>
 						let subButton = document.querySelector("#SBM");
 						subButton.style.setProperty("--submit-hover-bckgnd", "darkgoldenrod");
 						subButton.style.setProperty("--submit-hover-brdr", "gray");
 					</script>
-				</form>
+				</form:form>
 				<a href="./login" id="register">
 					Already Have Account
 				</a>

@@ -17,6 +17,10 @@ input:focus {
 input:hover {
 	background-color: gold;
 }
+ 
+.input_block {
+	max-width: 300px;
+}
 
 .form_container {
 	text-decoration: none;

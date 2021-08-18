@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.ericeagan.vvorlds.models.Account;
 import org.ericeagan.vvorlds.models.User;
@@ -15,7 +16,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -50,7 +53,8 @@ public class HomeController {
 	}
 	
 	@GetMapping("/register")
-	public String showRegisterPage() {
+	public String showRegisterPage(Model model) {
+		model.addAttribute("newUser", new User());
 		return "register";
 	}
 	
@@ -60,10 +64,16 @@ public class HomeController {
 	}
 	
 	@PostMapping("/registerNewUser")
-	public String registerUser(HttpServletRequest request) {
-		Map<String, String[]> paramMap = request.getParameterMap();
+	public String registerUser(HttpServletRequest request,
+			@Valid @ModelAttribute("newUser") User newUser,
+			BindingResult result) {
 		
-		User newUser = new User(paramMap.get("userName")[0], paramMap.get("password")[0]);
+		System.out.print(result);
+		if (result.hasErrors()) {
+			return "register";
+		}
+		
+		Map<String, String[]> paramMap = request.getParameterMap();
 		Account newAcc = new Account(paramMap.get("firstName")[0], paramMap.get("lastName")[0], 
 				paramMap.get("email")[0], paramMap.get("address")[0], paramMap.get("phone")[0], 
 				newUser);
