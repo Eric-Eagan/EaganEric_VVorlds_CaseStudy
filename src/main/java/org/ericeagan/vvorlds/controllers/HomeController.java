@@ -68,12 +68,16 @@ public class HomeController {
 			@Valid @ModelAttribute("newUser") User newUser,
 			BindingResult result) {
 		
-		System.out.print(result);
+		Map<String, String[]> paramMap = request.getParameterMap();
+		
+		
+		if (us.getByUsername(paramMap.get("username")[0]) != null) {
+			result.rejectValue("username", "error.user", "Username already taken.");
+		}
 		if (result.hasErrors()) {
 			return "register";
 		}
 		
-		Map<String, String[]> paramMap = request.getParameterMap();
 		Account newAcc = new Account(paramMap.get("firstName")[0], paramMap.get("lastName")[0], 
 				paramMap.get("email")[0], paramMap.get("address")[0], paramMap.get("phone")[0], 
 				newUser);
