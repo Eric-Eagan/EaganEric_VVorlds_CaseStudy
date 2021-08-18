@@ -58,7 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.exceptionHandling().accessDeniedPage("/accessDenied")
 		.and()
 		// Specifies that we would like to use a custom form to login
-		.formLogin().loginPage("/login").failureUrl("/login?error=1").permitAll()
+		.formLogin().loginPage("/login").defaultSuccessUrl("/", true).failureUrl("/login?error=1").permitAll()
 		
 		// Specifies that any authenticated user can access all URLs
 		//.and().authorizeRequests().anyRequest().authenticated()
