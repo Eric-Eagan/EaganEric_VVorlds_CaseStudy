@@ -20,7 +20,7 @@
 	<div class="container">
 		<%@ include file="html/menu.html" %>
 	</div>
-	<div class="container" style="margin-top:-70px;">
+	<div class="container content-container">
 		<div class="content">
 			<div class="form_container">
 				<h2 style="background-color: darkgoldenrod;

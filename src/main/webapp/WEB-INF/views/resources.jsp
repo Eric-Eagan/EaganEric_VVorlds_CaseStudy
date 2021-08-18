@@ -19,7 +19,7 @@
 	<div class="container">
 		<%@ include file="html/menu.html" %>
 	</div>
-	<div class="container" style="margin-top:-70px;">
+	<div class="container content-container">
 		<div class="content" style="width: 100%; max-width: 1000px">
 			<div class="vert_block" style="width: 100%;">
 				<h2>Resources</h2>

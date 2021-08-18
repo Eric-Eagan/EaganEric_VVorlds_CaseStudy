@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.ericeagan.vvorlds.models.Account;
@@ -33,12 +34,12 @@ public class HomeController {
 	}
 	
 	@GetMapping("/")
-	public String showStartPage(Model model) {
+	public String showStartPage(HttpSession session) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Collection<? extends GrantedAuthority> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
 		System.out.println(authorities);
 		
-		model.addAttribute("currentUser", ((UserDetails)principal).getUsername());
+		session.setAttribute("currentUser", ((UserDetails)principal).getUsername());
 		return "index";
 	}
 	
@@ -48,7 +49,8 @@ public class HomeController {
 	}
 	
 	@GetMapping("/logoutUser")
-	public String showLogoutPage() {
+	public String showLogoutPage(HttpSession session) {
+		session.removeAttribute("currentUser");
 		return "logout";
 	}
 	
@@ -56,6 +58,11 @@ public class HomeController {
 	public String showRegisterPage(Model model) {
 		model.addAttribute("newUser", new User());
 		return "register";
+	}
+	
+	@GetMapping("/account")
+	public String showAccountPage() {
+		return "account";
 	}
 	
 	@GetMapping("/resources")
