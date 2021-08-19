@@ -36,9 +36,15 @@
 				</p>
 				<form name="user_input" action="login" method="post"
 				style="display:flex; flex-direction: column; padding-bottom:10px">
-					<input type="text" name="username" id="UN" placeholder="Username">
-					<input type="password" name="password" id="PW" placeholder="Password">
-					<input type="submit" name="submit" value="- Log In -">
+					<div class="input_block">
+						<input type="text" name="username" id="UN" placeholder="Username">
+					</div>
+					<div class="input_block">
+						<input type="password" name="password" id="PW" placeholder="Password">
+					</div>
+					<div class="input_block">
+						<input type="submit" name="submit" value="- Log In -">
+					</div>
 				</form>
 				<a href="./register" id="register">
 					Create Account
