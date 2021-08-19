@@ -30,3 +30,23 @@ function disableSub() {
 	subButton.style.setProperty("--submit-hover-brdr", "gray");
 	subButton.setAttribute("disabled", true);
 }
+
+function unlockAccount() {
+	let inputList = document.querySelectorAll("#account_display>div>.lockedInput");
+	let button = document.querySelector("#SBM");
+	
+	for (let el of inputList) {
+		el.removeAttribute("readonly");
+		el.classList.remove("lockedInput");
+	}
+	
+	let parentDiv = button.parentElement;
+	let newButton = button.cloneNode();
+	button.style.setProperty("display", "none");
+	
+	newButton.setAttribute("id", "NSBM");
+	newButton.innerHTML = "- Submit Changes -";
+	newButton.setAttribute("form", "account_display");
+	parentDiv.appendChild(newButton);
+	
+}

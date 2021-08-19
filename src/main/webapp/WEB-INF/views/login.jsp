@@ -17,7 +17,7 @@
 		<h1>VVorlds</h1>
 	</div>
 	<div class="container">
-		<%@ include file="html/menu.html" %>
+		<%@ include file="html/foreignMenu.html" %>
 	</div>
 	<div class="container content-container">
 		<div class="content">

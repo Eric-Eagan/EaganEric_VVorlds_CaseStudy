@@ -34,6 +34,10 @@ input:hover {
 .input:active {
 	background-color: black;
 }
+		
+.lockedInput:hover, .lockedInput:focus {
+	background-color: DarkGoldenRod;
+}
 
 .form_container {
 	text-decoration: none;
