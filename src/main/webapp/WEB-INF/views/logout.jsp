@@ -7,6 +7,24 @@
 <title>Logging Out</title>
 <link rel="stylesheet" type="text/css" href="css/default.css" >
 <link rel="stylesheet" type="text/css" href="css/notIndex.css" >
+<style type="text/css">
+	button {
+		background-color: DarkGoldenRod;
+		padding: 0px 20px 0px 20px;
+		border: 2px solid black;
+		box-shadow: 4px 4px 0px rgba(0, 0, 0, .5);
+		font-family: Palanquin Dark, cursive;
+		font-size: xx-large;
+	}
+	
+	button:hover {
+		background-color: gold;
+	}
+	
+	button:active {
+		text-decoration: none;
+	}
+</style>
 </head>
 <body>
 	<div class="container">
