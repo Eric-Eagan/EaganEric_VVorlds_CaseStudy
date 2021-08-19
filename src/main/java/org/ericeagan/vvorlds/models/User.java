@@ -22,7 +22,7 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int id;
 	
-	@Column(name="username")
+	@Column(name="username", unique=true)
 	@NotNull
 	@Size(min=2, max=25, message="Username must be between 2 and 25 characters.")
 	String username;

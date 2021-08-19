@@ -48,5 +48,4 @@ function unlockAccount() {
 	newButton.innerHTML = "- Submit Changes -";
 	newButton.setAttribute("form", "account_display");
 	parentDiv.appendChild(newButton);
-	
 }

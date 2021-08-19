@@ -92,7 +92,6 @@ public class HomeController {
 		
 		Map<String, String[]> paramMap = request.getParameterMap();
 		
-		
 		if (us.getByUsername(paramMap.get("username")[0]) != null) {
 			result.rejectValue("username", "error.user", "Username already taken.");
 		}

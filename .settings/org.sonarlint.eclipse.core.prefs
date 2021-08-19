@@ -2,5 +2,5 @@ autoEnabled=true
 eclipse.preferences.version=1
 idePrefixKey=
 projectKey=VVorlds
-serverId=SonarQube Server
+serverId=VVorlds
 sqPrefixKey=
