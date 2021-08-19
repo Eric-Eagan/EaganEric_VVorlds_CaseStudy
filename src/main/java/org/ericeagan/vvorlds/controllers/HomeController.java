@@ -133,8 +133,14 @@ public class HomeController {
 		
 		if (us.validatePassword(currentUser, paramMap.get("oldPass")[0])) {
 			currentUser.setPassword(paramMap.get("newPass")[0]);
-			us.save(currentUser);
-			return "redirect:/account";
+			if(us.validateUser(currentUser)) {
+				System.out.println(currentUser);
+				us.save(currentUser);
+				return "redirect:/account";
+			}else {
+				model.addAttribute("errorMessage", "Password must be between 4 and 100 characters.");
+				return "updatePassword";
+			}
 		}
 		
 		model.addAttribute("errorMessage", "Bad Credentials");

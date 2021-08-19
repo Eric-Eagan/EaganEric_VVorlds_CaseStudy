@@ -7,4 +7,5 @@ public interface UserService {
 	User getById(Integer id);
 	User getByUsername(String username);
 	boolean validatePassword(User user, String password);
+	boolean validateUser(User user);
 }
