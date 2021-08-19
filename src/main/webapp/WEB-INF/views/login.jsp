@@ -11,7 +11,6 @@
     <link rel="stylesheet" type="text/css" href="css/default.css" >
     <link rel="stylesheet" type="text/css" href="css/notIndex.css" >
     <link rel="stylesheet" type="text/css" href="css/form.css" >
-	<script type="text/javascript" src="js/login.js"></script>
 </head>
 <body>
 	<div class="container">

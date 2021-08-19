@@ -27,8 +27,12 @@
 			background-color: var(--submit-hover-bckgnd);
 			border-color: var(--submit-hover-brdr);
 		}
+		
+		#SBM:active {
+			background-color: DarkGoldenRod;
+		}
 	</style>
-	<script type="text/javascript" src="js/login.js"></script>
+	<script type="text/javascript" src="js/accountForms.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -51,33 +55,42 @@
 				style="display:flex; flex-direction: column; padding-bottom:10px"
 				modelAttribute="newUser">
 					<div class="input_block">
-						<form:errors path="username" cssClass="error" />
+						<form:errors path="username" cssClass="error" /><br>
+						<label>Username</label>
 						<form:input type="text" path="username" name="username" id="UN" placeholder="Username" onKeyUp="verify()"/>
 					</div>
 					<div class="input_block">
-						<form:errors path="password" cssClass="error" />
+						<form:errors path="password" cssClass="error" /><br>
+						<label>Password</label>
 						<form:input type="password" path="password" name="password" id="PW" placeholder="Password" onKeyUp="verify()"/>
 					</div>
 					<div class="input_block">
+						<label>Confirm Password</label>
 						<input type="password" name="passwordConfirm" id="PWC" placeholder="Confirm Password" onKeyUp="verify()">
 					</div>
 					<div class="input_block">
+						<br>
+						<label>First Name</label>
 						<input type="text" name="firstName" id="FN" placeholder="First Name">
 					</div>
 					<div class="input_block">
+						<label>Last Name</label>
 						<input type="text" name="lastName" id="LN" placeholder="Last Name">
 					</div>
 					<div class="input_block">
+						<label>Email</label>
 						<input type="text" name="email" id="EM" placeholder="Email">
 					</div>
 					<div class="input_block">
+						<label>Address</label>
 						<input type="text" name="address" id="AD" placeholder="Address">
 					</div>
 					<div class="input_block">
+						<label>Phone</label>
 						<input type="text" name="phone" id="PN" placeholder="Phone">
 					</div>
 					<div class="input_block">
-						<input type="submit" name="submit" id="SBM" disabled value="- Submit -">
+						<button name="submit" id="SBM" disabled>- Submit -</button>
 					</div>
 					<script>
 						let subButton = document.querySelector("#SBM");

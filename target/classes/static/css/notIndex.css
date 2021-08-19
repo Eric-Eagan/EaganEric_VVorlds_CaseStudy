@@ -8,13 +8,13 @@ h1 {
 }
 
 .content {
-	width: 500px;
+	/*width: 500px;*/
 	background-color: DarkGoldenRod;
 	box-shadow: 4px 4px 0px rgba(0, 0, 0, .5);
 	border: 2px solid black;
 	display: flex;
 	justify-content: center;
-	padding: 20px;
+	padding: 20px 90px 20px 90px;
 }
 
 .content-container {

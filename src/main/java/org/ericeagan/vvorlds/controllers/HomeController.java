@@ -61,8 +61,18 @@ public class HomeController {
 	}
 	
 	@GetMapping("/account")
-	public String showAccountPage() {
+	public String showAccountPage(Model model, HttpSession session) {
+		User user = us.getByUsername((String) session.getAttribute("currentUser"));
+		Account account = as.getById(user.getId());
+		
+		model.addAttribute("User", user);
+		model.addAttribute("Account", account);
 		return "account";
+	}
+	
+	@GetMapping("/updatePassword")
+	public String showUpdatePasswordPage() {
+		return "updatePassword";
 	}
 	
 	@GetMapping("/resources")
@@ -95,5 +105,34 @@ public class HomeController {
 		as.save(newAcc);
 		
 		return "redirect:/login";
+	}
+	
+	@PostMapping("/updateAccount")
+	public String updateAccount(HttpSession session, HttpServletRequest request,
+			@ModelAttribute("account") Account oldAccount) {
+		User user = us.getByUsername((String) session.getAttribute("currentUser"));
+		oldAccount.setUserId(user.getId());
+		
+		as.save(oldAccount);
+		
+		return "redirect:/account";
+	}
+	
+	@PostMapping("/updatePassword")
+	public String updatePassword(HttpServletRequest request, Model model) {
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User currentUser = us.getByUsername(((UserDetails)principal).getUsername());
+		
+		Map<String, String[]> paramMap = request.getParameterMap();
+		
+		if (us.validatePassword(currentUser, paramMap.get("oldPass")[0])) {
+			currentUser.setPassword(paramMap.get("newPass")[0]);
+			us.save(currentUser);
+			return "redirect:/account";
+		}
+		
+		model.addAttribute("errorMessage", "Bad Credentials");
+		return "updatePassword";
 	}
 }

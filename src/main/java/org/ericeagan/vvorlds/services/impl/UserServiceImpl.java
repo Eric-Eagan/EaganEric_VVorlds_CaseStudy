@@ -33,4 +33,9 @@ public class UserServiceImpl implements UserService {
 	public User getByUsername(String username) {
 		return userRepository.getByUsername(username);
 	}
+
+	@Override
+	public boolean validatePassword(User user, String password) {
+		return pswdEncoder.matches(password, user.getPassword());
+	}
 }
