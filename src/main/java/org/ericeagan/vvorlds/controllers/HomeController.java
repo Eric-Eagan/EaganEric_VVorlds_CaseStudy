@@ -72,7 +72,7 @@ public class HomeController {
 	
 	@GetMapping("/updatePassword")
 	public String showUpdatePasswordPage() {
-		return "updatePassword";
+		return "update_password";
 	}
 	
 	@GetMapping("/resources")
