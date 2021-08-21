@@ -8,4 +8,5 @@ public interface UserService {
 	User getByUsername(String username);
 	boolean validatePassword(User user, String password);
 	boolean validateUser(User user);
+	void deleteUser(User user);
 }

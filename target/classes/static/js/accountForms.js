@@ -42,10 +42,22 @@ function unlockAccount() {
 	
 	let parentDiv = button.parentElement;
 	let newButton = button.cloneNode();
-	button.style.setProperty("display", "none");
+	button.style.setProperty("float", "left");
+	button.innerHTML = "- !Delete Account! -";
+	button.setAttribute("onclick", "confirmDelete()");
 	
 	newButton.setAttribute("id", "NSBM");
 	newButton.innerHTML = "- Submit Changes -";
+	newButton.setAttribute("onclick", "");
 	newButton.setAttribute("form", "account_display");
 	parentDiv.appendChild(newButton);
+}
+
+function confirmDelete() {
+	if(confirm("Warning!\nAre you sure?\nThis will delete all files on your account.\nThere is no recovery.")) {
+		let button = document.querySelector("#SBM");
+		let form = document.querySelector("#account_display");
+		form.setAttribute("action", "deleteAccount");
+		button.setAttribute("form", "account_display");
+	}
 }

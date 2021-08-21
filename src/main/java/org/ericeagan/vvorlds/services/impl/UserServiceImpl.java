@@ -1,11 +1,8 @@
 package org.ericeagan.vvorlds.services.impl;
 
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
-import javax.validation.Valid;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
@@ -16,7 +13,6 @@ import org.ericeagan.vvorlds.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -57,5 +53,10 @@ public class UserServiceImpl implements UserService {
 	public boolean validateUser(User user) {
 		Set<ConstraintViolation<User>> violations = validator.validate(user);
 		return violations.isEmpty();
+	}
+
+	@Override
+	public void deleteUser(User user) {
+		userRepository.delete(user);
 	}
 }

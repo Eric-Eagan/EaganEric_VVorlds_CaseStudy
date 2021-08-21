@@ -122,6 +122,19 @@ public class HomeController {
 		return "redirect:/account";
 	}
 	
+	@PostMapping("/deleteAccount")
+	public String deleteAccount(HttpSession session, HttpServletRequest request,
+			@ModelAttribute("account") Account oldAccount) {
+		User user = us.getByUsername((String) session.getAttribute("currentUser"));
+		Account account = as.getById(user.getId());
+
+		as.deleteAccount(account);
+		us.deleteUser(user);
+
+		session.removeAttribute("currentUser");
+		return "redirect:/login";
+	}
+	
 	@PostMapping("/updatePassword")
 	public String updatePassword(HttpServletRequest request, Model model) {
 		
