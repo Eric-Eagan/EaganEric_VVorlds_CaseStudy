@@ -19,14 +19,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @EnableConfigurationProperties
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class AccountRepositoryTest {
+class UserRepositoryTests {
 	
-	private AccountRepository ar;
-	private Account expected;
+	private UserRepository ur;
+	private User expected;
 	
 	@Autowired
-	public AccountRepositoryTest(AccountRepository ar) {
-		this.ar = ar;
+	public UserRepositoryTests(UserRepository ur) {
+		this.ur = ur;
 	}
 	
 	@BeforeAll
@@ -35,17 +35,24 @@ class AccountRepositoryTest {
 		Account a = new Account();
 		u.setAccount(a);
 		a.setUser(u);
-		expected = ar.save(a);
+		expected = ur.save(u);
+		
 	}
 	
 	@AfterAll
 	void clearSetup() {
-		ar.delete(expected);
+		ur.delete(expected);
 	}
 	
 	@Test
 	void testGetById() {
-		Account actual = (Account) ar.getById(expected.getUserId());
-		assertEquals(expected.getUserId(), actual.getUserId());
+		User actual = (User) ur.getById(expected.getId());
+		assertEquals(expected.getId(), actual.getId());
+	}
+	
+	@Test
+	void testGetByUsername() {
+		User actual = ur.getByUsername(expected.getUsername());
+		assertEquals(expected, actual);
 	}
 }
