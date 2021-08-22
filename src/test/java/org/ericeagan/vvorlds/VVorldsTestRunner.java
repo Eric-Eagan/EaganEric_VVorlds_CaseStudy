@@ -9,7 +9,7 @@ import org.junit.runner.notification.Failure;
 
 public class VVorldsTestRunner {
 	public static void main(String[] args) {
-	      Result result = JUnitCore.runClasses(
+		Result result = JUnitCore.runClasses(
 	    		  VVorldsApplicationTests.class,
 	    		  RepositoriesSuite.class,
 	    		  SeleniumSuite.class,
