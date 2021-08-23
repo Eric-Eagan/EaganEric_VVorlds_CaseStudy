@@ -125,3 +125,38 @@ button:active {
 	font-family: Palanquin Dark, cursive;
 	text-align: center;
 }
+
+.hastooltip {
+	position: relative;
+}
+
+.tooltiptext {
+	opacity: 0;
+	width: 240px;
+	background-color: DarkGoldenRod;
+	color: black;
+	border: 2px solid black;
+	box-shadow: 4px 4px 0px rgba(0, 0, 0, .5);
+	font-family: Palanquin Dark, cursive;
+	text-align: center;
+	padding: 5px 0;
+	position: absolute;
+	z-index: 1;
+	top: -7px;
+	left: 110%;
+	transition: opacity .5s;
+}
+
+.tooltiptext::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: 100%;
+	margin-top: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: transparent black transparent transparent;
+}
+.hastooltip:hover .tooltiptext {
+	opacity: 1;
+}

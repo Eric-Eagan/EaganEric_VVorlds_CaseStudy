@@ -21,6 +21,7 @@ function enableSub() {
 	subButton.style.setProperty("--submit-hover-bckgnd", "gold");
 	subButton.style.setProperty("--submit-hover-brdr", "black");
 	subButton.removeAttribute("disabled");
+	subButton.classList.remove("hastooltip");
 }
 
 function disableSub() {
@@ -29,6 +30,7 @@ function disableSub() {
 	subButton.style.setProperty("--submit-hover-bckgnd", "darkgoldenrod");
 	subButton.style.setProperty("--submit-hover-brdr", "gray");
 	subButton.setAttribute("disabled", true);
+	subButton.classList.add("hastooltip");
 }
 
 function unlockAccount() {

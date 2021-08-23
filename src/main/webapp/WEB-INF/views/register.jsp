@@ -91,7 +91,10 @@
 						<input type="text" name="phone" id="PN" placeholder="Phone">
 					</div>
 					<div class="input_block">
-						<button name="submit" id="SBM" disabled>- Submit -</button>
+						<button name="submit" class="hastooltip" id="SBM" disabled>
+							- Submit -
+							<span class="tooltiptext">Must provide username and have matching passwords</span>
+						</button>
 					</div>
 					<script>
 						let subButton = document.querySelector("#SBM");
