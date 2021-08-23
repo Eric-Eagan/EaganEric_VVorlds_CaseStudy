@@ -113,11 +113,11 @@ public class HomeController {
 	
 	@PostMapping("/updateAccount")
 	public String updateAccount(HttpSession session, HttpServletRequest request,
-			@ModelAttribute("account") Account oldAccount) {
+			@ModelAttribute("account") Account account) {
 		User user = us.getByUsername((String) session.getAttribute("currentUser"));
-		oldAccount.setUserId(user.getId());
+		account.setUserId(user.getId());
 		
-		as.save(oldAccount);
+		as.save(account);
 		
 		return "redirect:/account";
 	}
