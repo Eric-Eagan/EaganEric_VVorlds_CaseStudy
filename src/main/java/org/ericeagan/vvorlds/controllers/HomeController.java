@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class HomeController {
 	private UserService us;
 	private AccountService as;
+	private String cu = "currentUser";
 	
 	@Autowired
 	public HomeController(UserService uSer, AccountService aSer) {
@@ -39,7 +40,7 @@ public class HomeController {
 		Collection<? extends GrantedAuthority> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
 		System.out.println(authorities);
 		
-		session.setAttribute("currentUser", ((UserDetails)principal).getUsername());
+		session.setAttribute(cu, ((UserDetails)principal).getUsername());
 		return "index";
 	}
 	
@@ -50,7 +51,7 @@ public class HomeController {
 	
 	@GetMapping("/logoutUser")
 	public String showLogoutPage(HttpSession session) {
-		session.removeAttribute("currentUser");
+		session.removeAttribute(cu);
 		return "logout";
 	}
 	
@@ -62,7 +63,7 @@ public class HomeController {
 	
 	@GetMapping("/account")
 	public String showAccountPage(Model model, HttpSession session) {
-		User user = us.getByUsername((String) session.getAttribute("currentUser"));
+		User user = us.getByUsername((String) session.getAttribute(cu));
 		Account account = as.getById(user.getId());
 		
 		model.addAttribute("User", user);
@@ -114,7 +115,7 @@ public class HomeController {
 	@PostMapping("/updateAccount")
 	public String updateAccount(HttpSession session, HttpServletRequest request,
 			@ModelAttribute("account") Account account) {
-		User user = us.getByUsername((String) session.getAttribute("currentUser"));
+		User user = us.getByUsername((String) session.getAttribute(cu));
 		account.setUserId(user.getId());
 		
 		as.save(account);
@@ -125,13 +126,13 @@ public class HomeController {
 	@PostMapping("/deleteAccount")
 	public String deleteAccount(HttpSession session, HttpServletRequest request,
 			@ModelAttribute("account") Account oldAccount) {
-		User user = us.getByUsername((String) session.getAttribute("currentUser"));
+		User user = us.getByUsername((String) session.getAttribute(cu));
 		Account account = as.getById(user.getId());
 
 		as.deleteAccount(account);
 		us.deleteUser(user);
 
-		session.removeAttribute("currentUser");
+		session.removeAttribute(cu);
 		return "redirect:/login";
 	}
 	
@@ -146,7 +147,6 @@ public class HomeController {
 		if (us.validatePassword(currentUser, paramMap.get("oldPass")[0])) {
 			currentUser.setPassword(paramMap.get("newPass")[0]);
 			if(us.validateUser(currentUser)) {
-				System.out.println(currentUser);
 				us.save(currentUser);
 				return "redirect:/account";
 			}else {
