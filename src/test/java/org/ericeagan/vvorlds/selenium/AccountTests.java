@@ -8,14 +8,13 @@ import org.ericeagan.vvorlds.models.User;
 import org.ericeagan.vvorlds.services.UserService;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class AccountTests {
+class AccountTests {
 	private WebDriver driver;
 	private UserService us;
 	

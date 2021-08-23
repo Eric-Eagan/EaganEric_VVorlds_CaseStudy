@@ -61,5 +61,6 @@ class LoginTests {
 		submit.click();
 		
 		assertEquals(expected, driver.getTitle());
+		us.getByUsername(username);
 	}
 }
