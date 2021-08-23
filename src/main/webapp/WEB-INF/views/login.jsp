@@ -43,7 +43,7 @@
 						<input type="password" name="password" id="PW" placeholder="Password">
 					</div>
 					<div class="input_block">
-						<input type="submit" name="submit" value="- Log In -">
+						<input type="submit" name="submit" id="SBM" value="- Log In -">
 					</div>
 				</form>
 				<a href="./register" id="register">
