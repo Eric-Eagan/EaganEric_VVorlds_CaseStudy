@@ -9,8 +9,51 @@
     <title>Resources</title>
     <link rel="stylesheet" type="text/css" href="css/default.css" >
     <link rel="stylesheet" type="text/css" href="css/notIndex.css" >
-    <link rel="stylesheet" type="text/css" href="css/resources.css" >
+    <link rel="stylesheet" type="text/css" href="css/selectForm.css" >
 	<link rel="stylesheet" type="text/css" href="css/form.css" >
+	<style>
+		#res {
+			background-color: gold;
+			color: #1c1808;
+		}
+		
+		table {
+			background-color: gold;
+		}
+		
+		table, th, td {
+			background-color: gold;
+			border: 2px solid black;
+		}
+		
+		th, td {
+			background-color: darkgoldenrod;
+			text-align: center;
+			padding: 10px;
+		}
+		
+		td + td {
+			position: relative;
+			padding-bottom: 47%;
+		}
+		
+		iframe {
+			position: absolute;
+			top: -2px;
+			left: -2px;
+			width: 100%;
+			height: 100%;
+			border: 2px solid black;
+		}
+		
+		form {
+			font-family: Palanquin Dark, cursive;
+			background-color: darkolivegreen;
+			width: 200px;
+			padding: 10px;
+			padding-right: 14px;
+		}
+	</style>
     <script type="text/javascript" src="js/resources.js"></script>
 </head>
 <body>

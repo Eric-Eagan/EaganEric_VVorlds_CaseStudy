@@ -6,7 +6,9 @@ import org.ericeagan.vvorlds.models.File;
 import org.ericeagan.vvorlds.repositories.FileRepository;
 import org.ericeagan.vvorlds.services.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class FileServiceImpl implements FileService {
 	private FileRepository fr;
 	

@@ -27,6 +27,7 @@ public class HomeController {
 	private UserService us;
 	private AccountService as;
 	private String cu = "currentUser";
+	private String cuId = "currentUserId";
 	
 	@Autowired
 	public HomeController(UserService uSer, AccountService aSer) {
@@ -39,8 +40,11 @@ public class HomeController {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Collection<? extends GrantedAuthority> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
 		System.out.println(authorities);
+		User user = us.getByUsername(((UserDetails)principal).getUsername());
 		
-		session.setAttribute(cu, ((UserDetails)principal).getUsername());
+		session.setAttribute(cu, user.getUsername());
+		session.setAttribute(cuId, user.getId());
+		session.setAttribute("fileDir", "D:\\VVorldsFiles");
 		return "index";
 	}
 	
@@ -52,6 +56,7 @@ public class HomeController {
 	@GetMapping("/logoutUser")
 	public String showLogoutPage(HttpSession session) {
 		session.removeAttribute(cu);
+		session.removeAttribute(cuId);
 		return "logout";
 	}
 	

@@ -1,13 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>files</title>
+<title>Files</title>
     <link rel="stylesheet" type="text/css" href="css/default.css" >
     <link rel="stylesheet" type="text/css" href="css/notIndex.css" >
 	<link rel="stylesheet" type="text/css" href="css/form.css" >
+    <script>
+    	function Document(id, path, typeId) {
+    		this.id = id;
+    		
+    	}
+    	
+    	var ownedList = [];
+    	var shareList = [];
+    	<c:forEach items="${ownedFiles}" var="temp">
+    		ownedList.push({id: "${temp.fileId}", 
+    						path: "${temp.path}", 
+    						title: "${temp.fileName}", 
+    						fileType: "${temp.fileType.imgPath}"});	
+    	</c:forEach>
+    	
+    	<c:forEach items="${shareFiles}" var="temp">
+    		shareList.push({id: "${temp.fileId}", 
+    						path: "${temp.path}", 
+    						title: "${temp.fileName}", 
+    						fileType: "${temp.fileType.imgPath}"});
+		</c:forEach>
+    	
+    </script>
+    <script type="text/javascript" src="js/files.js"></script>
 	<style>
 		img {
 			width: 135px;
@@ -34,6 +59,7 @@
 		}
 		
 		.box-container {
+			position: relative;
 			font-family: Palanquin Dark, cursive;
 			padding: 4px;
 			width: 135px;
@@ -65,6 +91,24 @@
 			-webkit-line-clamp: 2;
 			line-height: 20px;
 		}
+		
+		.corner-box {
+			position: absolute;
+			padding: 0px;
+			width: 22px;
+			height: 22px;
+			right: 0;
+			top: 0;
+		}
+		
+		#template {
+			display: none;
+		}
+		
+		#docs {
+			background-color: gold;
+			color: #1c1808;
+		}
 	</style>
 </head>
 <body>
@@ -86,133 +130,40 @@
 							YOUR FILES
 						</h2>
 						<div style="display: flex; justify-content:center;">
-							<button class="head-button">Your Files</button>
-							<button class="head-button">Shared Files</button>
+							<button class="head-button" onclick="showOwnedFiles()">Your Files</button>
+							<button class="head-button" onclick="showSharedFiles()">Shared Files</button>
 						</div>
 						<div style="display: flex; justify-content:center;">
-							<button class="head-button">New File</button>
+							<button class="head-button" onclick="location.href = '/uploadFile'">New File</button>
 						</div>
 					</div>
 				</div>
-				<div class="container form_container" style="flex-wrap: wrap;">
-				
-					<div class="file-spacer"> 
-						<div class="file-container">
-							<div class="container">
-								<div class="box-container visible-box">
-									<div class="image-container">
-										<img src="img/document.png" alt="icon"> 
-									</div> 
-								</div>
-							</div>
-							<div class="file-label visible-box">
-								<span class="file-title">This is an exceptionally long Title</span>
-								<div class="button-container">
-									<button class="file-button">Download</button>
-									<button class="file-button">Delete</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="file-spacer"> 
-						<div class="file-container">
-							<div class="container">
-								<div class="box-container visible-box">
-									<div class="image-container">
-										<img src="img/image.png" alt="icon">
-									</div> 
-								</div>
-							</div>
-							<div class="file-label visible-box">
-								<span class="file-title">Title</span>
-								<div class="button-container">
-									<button class="file-button">Download</button>
-									<button class="file-button">Delete</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="file-spacer"> 
-						<div class="file-container">
-							<div class="container">
-								<div class="box-container visible-box">
-									<div class="image-container">
-										<img src="img/document.png" alt="icon"> 
-									</div> 
-								</div>
-							</div>
-							<div class="file-label visible-box">
-								<span class="file-title">This is an exceptionally long Title even longer than the others</span>
-								<div class="button-container">
-									<button class="file-button">Download</button>
-									<button class="file-button">Delete</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="file-spacer"> 
-						<div class="file-container">
-							<div class="container">
-								<div class="box-container visible-box">
-									<div class="image-container">
-										<img src="img/document.png" alt="icon"> 
-									</div> 
-								</div>
-							</div>
-							<div class="file-label visible-box">
-								<span class="file-title">This is an exceptionally long Title even longer than the others</span>
-								<div class="button-container">
-									<button class="file-button">Download</button>
-									<button class="file-button">Delete</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="file-spacer"> 
-						<div class="file-container">
-							<div class="container">
-								<div class="box-container visible-box">
-									<div class="image-container">
-										<img src="img/document.png" alt="icon"> 
-									</div> 
-								</div>
-							</div>
-							<div class="file-label visible-box">
-								<span class="file-title">This is an exceptionally long Title even longer than the others</span>
-								<div class="button-container">
-									<button class="file-button">Download</button>
-									<button class="file-button">Delete</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="file-spacer"> 
-						<div class="file-container">
-							<div class="container">
-								<div class="box-container visible-box">
-									<div class="image-container">
-										<img src="img/document.png" alt="icon"> 
-									</div> 
-								</div>
-							</div>
-							<div class="file-label visible-box">
-								<span class="file-title">This is an exceptionally long Title even longer than the others</span>
-								<div class="button-container">
-									<button class="file-button">Download</button>
-									<button class="file-button">Delete</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					
+				<div class="container form_container" id="file-block" style="flex-wrap: wrap;">
 				</div>
 			</div>
 		</div>
 	</div>
+	<div class="file-spacer" id="template"> 
+		<div class="file-container">
+			<div class="container">
+				<div class="box-container visible-box">
+					<button class="corner-box">
+						<img src="img/x.png" style="width: 18px; height: 18px;" alt="X">
+					</button>
+					<div class="image-container">
+						<img src="" alt="icon"> 
+					</div> 
+				</div>
+			</div>
+			<div class="file-label visible-box">
+				<span class="file-title">Title</span>
+				<div class="button-container">
+					<button class="file-button">Download</button>
+					<button class="file-button">Share</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>showOwnedFiles();</script>
 </body>
 </html>
