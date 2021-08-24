@@ -1,13 +1,19 @@
 package org.ericeagan.vvorlds.models;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.validation.constraints.NotNull;
@@ -36,6 +42,16 @@ public class User {
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	Account account;
+	
+	@OneToMany(targetEntity = File.class, mappedBy = "owner")
+	private Set<File> ownedFiles;
+	
+	@ManyToMany
+	@JoinTable(
+			  name = "FileSharedUser", 
+			  joinColumns = @JoinColumn(name = "userId"), 
+			  inverseJoinColumns = @JoinColumn(name = "fileId"))
+	private Set<File> sharedFiles;
 	
 	public User() {
 		this.userRole = "ROLE_USER";

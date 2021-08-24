@@ -3,6 +3,8 @@
 	<persistence-unit name="VVorlds">
 		<class>org.ericeagan.vvorlds.models.User</class>
 		<class>org.ericeagan.vvorlds.models.Account</class>
+		<class>org.ericeagan.vvorlds.models.File</class>
+		<class>org.ericeagan.vvorlds.models.FileType</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mariadb://localhost:3307/VVorldsDB" />
 			<property name="javax.persistence.jdbc.user" value="root" />
