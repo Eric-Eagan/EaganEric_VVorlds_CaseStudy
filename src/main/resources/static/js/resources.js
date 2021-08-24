@@ -53,6 +53,7 @@ function updateResources() {
 		let descCell = document.createElement('td');
 		descCell.textContent = entry[0];
 		let videoCell = document.createElement('td');
+		videoCell.innerHTML = 'Loading...';
 		let newVideo = document.createElement('iframe');
 		newVideo.setAttribute('width', '100%');
 		newVideo.setAttribute('height', 'auto');

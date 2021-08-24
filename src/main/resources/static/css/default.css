@@ -69,6 +69,12 @@ button:active {
 	opacity: .75;
 }
 
+.visible-box {
+	background-color: DarkGoldenRod;
+	border: 2px solid black;
+	box-shadow: 4px 4px 0px rgba(0, 0, 0, .5);
+}
+
 .container {
 	display: flex;
 	justify-content: center;
