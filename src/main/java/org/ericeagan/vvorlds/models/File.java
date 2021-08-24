@@ -10,11 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "files")
+@NamedQuery(name="File.getAllFiles", 
+	query = "SELECT f FROM File f")
 public class File {
 	@Id @Column(name="fileId")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

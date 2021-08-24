@@ -21,8 +21,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
-@NamedQuery(name="FindAllUsers", query = "SELECT u FROM User u")
-@NamedQuery(name="FindUserByUsername", query="SELECT u FROM User u WHERE u.username = :username")
+@NamedQuery(name="User.getAllUsers", query = "SELECT u FROM User u")
 public class User {
 	@Id @Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

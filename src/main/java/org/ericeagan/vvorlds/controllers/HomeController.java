@@ -81,11 +81,6 @@ public class HomeController {
 		return "resources";
 	}
 	
-	@GetMapping("/documents")
-	public String showDocumentsPage() {
-		return "documents";
-	}
-	
 	@PostMapping("/registerNewUser")
 	public String registerUser(HttpServletRequest request,
 			@Valid @ModelAttribute("newUser") User newUser,

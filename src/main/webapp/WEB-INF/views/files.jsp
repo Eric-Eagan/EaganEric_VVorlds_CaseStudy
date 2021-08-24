@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Documents</title>
+<title>files</title>
     <link rel="stylesheet" type="text/css" href="css/default.css" >
     <link rel="stylesheet" type="text/css" href="css/notIndex.css" >
 	<link rel="stylesheet" type="text/css" href="css/form.css" >
@@ -18,7 +18,7 @@
 			margin: 5px;
 		}
 		
-		.document-spacer {
+		.file-spacer {
 			width: 240px;
 			height: 275px;
 			display: flex;
@@ -39,7 +39,7 @@
 			width: 135px;
 		}
 		
-		.document-label {
+		.file-label {
 			width: 200px;
 			z-index: 1;
 			position: relative;
@@ -52,12 +52,12 @@
 			justify-content: center;
 		}
 		
-		.document-button {
+		.file-button {
 			padding: 0px 10px 0px 10px;
 			margin: 10px;
 		}
 		
-		.document-title {
+		.file-title {
 			display: -webkit-box;
 			-webkit-box-orient: vertical;
 			overflow: hidden;
@@ -83,21 +83,21 @@
 									box-shadow: 4px 4px 0px rgba(0, 0, 0, .5);
 									border: 2px solid black;
 									margin: 10px;">
-							YOUR DOCUMENTS
+							YOUR FILES
 						</h2>
 						<div style="display: flex; justify-content:center;">
-							<button class="head-button">Your Documents</button>
-							<button class="head-button">Shared Documents</button>
+							<button class="head-button">Your Files</button>
+							<button class="head-button">Shared Files</button>
 						</div>
 						<div style="display: flex; justify-content:center;">
-							<button class="head-button">New Document</button>
+							<button class="head-button">New File</button>
 						</div>
 					</div>
 				</div>
 				<div class="container form_container" style="flex-wrap: wrap;">
 				
-					<div class="document-spacer"> 
-						<div class="document-container">
+					<div class="file-spacer"> 
+						<div class="file-container">
 							<div class="container">
 								<div class="box-container visible-box">
 									<div class="image-container">
@@ -105,18 +105,18 @@
 									</div> 
 								</div>
 							</div>
-							<div class="document-label visible-box">
-								<span class="document-title">This is an exceptionally long Title</span>
+							<div class="file-label visible-box">
+								<span class="file-title">This is an exceptionally long Title</span>
 								<div class="button-container">
-									<button class="document-button">Download</button>
-									<button class="document-button">Delete</button>
+									<button class="file-button">Download</button>
+									<button class="file-button">Delete</button>
 								</div>
 							</div>
 						</div>
 					</div>
 					
-					<div class="document-spacer"> 
-						<div class="document-container">
+					<div class="file-spacer"> 
+						<div class="file-container">
 							<div class="container">
 								<div class="box-container visible-box">
 									<div class="image-container">
@@ -124,18 +124,18 @@
 									</div> 
 								</div>
 							</div>
-							<div class="document-label visible-box">
-								<span class="document-title">Title</span>
+							<div class="file-label visible-box">
+								<span class="file-title">Title</span>
 								<div class="button-container">
-									<button class="document-button">Download</button>
-									<button class="document-button">Delete</button>
+									<button class="file-button">Download</button>
+									<button class="file-button">Delete</button>
 								</div>
 							</div>
 						</div>
 					</div>
 					
-					<div class="document-spacer"> 
-						<div class="document-container">
+					<div class="file-spacer"> 
+						<div class="file-container">
 							<div class="container">
 								<div class="box-container visible-box">
 									<div class="image-container">
@@ -143,18 +143,18 @@
 									</div> 
 								</div>
 							</div>
-							<div class="document-label visible-box">
-								<span class="document-title">This is an exceptionally long Title even longer than the others</span>
+							<div class="file-label visible-box">
+								<span class="file-title">This is an exceptionally long Title even longer than the others</span>
 								<div class="button-container">
-									<button class="document-button">Download</button>
-									<button class="document-button">Delete</button>
+									<button class="file-button">Download</button>
+									<button class="file-button">Delete</button>
 								</div>
 							</div>
 						</div>
 					</div>
 					
-					<div class="document-spacer"> 
-						<div class="document-container">
+					<div class="file-spacer"> 
+						<div class="file-container">
 							<div class="container">
 								<div class="box-container visible-box">
 									<div class="image-container">
@@ -162,18 +162,18 @@
 									</div> 
 								</div>
 							</div>
-							<div class="document-label visible-box">
-								<span class="document-title">This is an exceptionally long Title even longer than the others</span>
+							<div class="file-label visible-box">
+								<span class="file-title">This is an exceptionally long Title even longer than the others</span>
 								<div class="button-container">
-									<button class="document-button">Download</button>
-									<button class="document-button">Delete</button>
+									<button class="file-button">Download</button>
+									<button class="file-button">Delete</button>
 								</div>
 							</div>
 						</div>
 					</div>
 					
-					<div class="document-spacer"> 
-						<div class="document-container">
+					<div class="file-spacer"> 
+						<div class="file-container">
 							<div class="container">
 								<div class="box-container visible-box">
 									<div class="image-container">
@@ -181,18 +181,18 @@
 									</div> 
 								</div>
 							</div>
-							<div class="document-label visible-box">
-								<span class="document-title">This is an exceptionally long Title even longer than the others</span>
+							<div class="file-label visible-box">
+								<span class="file-title">This is an exceptionally long Title even longer than the others</span>
 								<div class="button-container">
-									<button class="document-button">Download</button>
-									<button class="document-button">Delete</button>
+									<button class="file-button">Download</button>
+									<button class="file-button">Delete</button>
 								</div>
 							</div>
 						</div>
 					</div>
 					
-					<div class="document-spacer"> 
-						<div class="document-container">
+					<div class="file-spacer"> 
+						<div class="file-container">
 							<div class="container">
 								<div class="box-container visible-box">
 									<div class="image-container">
@@ -200,11 +200,11 @@
 									</div> 
 								</div>
 							</div>
-							<div class="document-label visible-box">
-								<span class="document-title">This is an exceptionally long Title even longer than the others</span>
+							<div class="file-label visible-box">
+								<span class="file-title">This is an exceptionally long Title even longer than the others</span>
 								<div class="button-container">
-									<button class="document-button">Download</button>
-									<button class="document-button">Delete</button>
+									<button class="file-button">Download</button>
+									<button class="file-button">Delete</button>
 								</div>
 							</div>
 						</div>
