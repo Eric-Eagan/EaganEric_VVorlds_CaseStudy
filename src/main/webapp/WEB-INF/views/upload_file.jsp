@@ -73,10 +73,17 @@
 				</h2>
 				<form:form name="fileForm" id="fileForm" action="uploadFile" method="post"
 				style="display:flex; flex-direction: column; padding-bottom:10px"
-				modelAttribute="newFile">
+				modelAttribute="newFile" enctype="multipart/form-data">
 					<div class="input_block">
 						<form:label path="fileName">File Name</form:label>
 						<form:input type="text" path="fileName" name="fileName" id="FN"/>
+					</div>
+					<div class="input_block">
+						<label for="file">File </label>
+						<div style="display: inline-block; position: relative;">
+							<label for="file" id="browse">Browse... </label>
+							<input type="file" id="file" name="file" style="width: 248px"/>	
+						</div>
 					</div>
 					<div class="input_block">
 						<form:label path="fileType">File Type</form:label>
@@ -85,13 +92,6 @@
 							<option value="1">Document</option>
 							<option value="2">Image</option>
 						</form:select>
-					</div>
-					<div class="input_block">
-						<form:label path="file">File </form:label>
-						<div style="display: inline-block; position: relative;">
-							<form:label path="file" id="browse">Browse... </form:label>
-							<form:input type="file" path="file" name="file" style="width: 248px"/>	
-						</div>
 					</div>
 					<div class="input_block">
 						<button name="submit" id="SBM">

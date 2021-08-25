@@ -1,21 +1,17 @@
 package org.ericeagan.vvorlds.models.dto;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class FileDTO {
 	String fileName;
 	int fileType;
-	MultipartFile file;
 	
 	public FileDTO() {
 		super();
 	}
 
-	public FileDTO(String fileName, int fileType, MultipartFile file) {
+	public FileDTO(String fileName, int fileType) {
 		super();
 		this.fileName = fileName;
 		this.fileType = fileType;
-		this.file = file;
 	}
 
 	public String getFileName() {
@@ -32,13 +28,5 @@ public class FileDTO {
 
 	public void setFileType(int fileType) {
 		this.fileType = fileType;
-	}
-
-	public MultipartFile getFile() {
-		return file;
-	}
-
-	public void setFile(MultipartFile file) {
-		this.file = file;
 	}
 }
