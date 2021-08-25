@@ -95,7 +95,7 @@ public class FileController {
 		return "upload_confirmation";
 	}
 	
-	@GetMapping("/delete_file/{id}")
+	@PostMapping("/delete_file/{id}")
 	public String deleteFile(@PathVariable int id) {
 		File file = fs.getById(id);
 		
@@ -116,5 +116,26 @@ public class FileController {
 		fs.deleteFile(file);
 		
 		return "redirect:/files";
+	}
+	
+	@PostMapping("/share_file/{id}/{username}")
+	public String shareFile(Model model, @PathVariable int id, @PathVariable String username) {
+		
+		User user = us.getByUsername(username);
+		if (user == null) {
+			model.addAttribute("msg", "User " + username + " does not exist");
+			return "upload_confirmation";
+		}
+		
+		File file = fs.getById(id);
+		
+		user.getSharedFiles().add(file);
+		file.getSharers().add(user);
+		
+		us.save(user);
+		fs.save(file);
+		
+		model.addAttribute("msg", "File shared with "+username);
+		return "upload_confirmation";
 	}
 }

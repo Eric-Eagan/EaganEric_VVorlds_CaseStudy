@@ -55,13 +55,19 @@ function makeFileDiv(fileId, path, title, typePath) {
 	
 	//mover -> download_form
 	mover = mover.nextElementSibling.firstElementChild;
-	mover.setAttribute('action', 'download/'+fileId);
+	mover.setAttribute('action', 'download_file/'+fileId);
 	mover.setAttribute('id', 'download_'+fileId);
 	
 	//mover -> share_form
 	mover = mover.nextElementSibling
-	mover.setAttribute('action', 'share/'+fileId);
+	mover.setAttribute('action', 'share_file/'+fileId);
 	mover.setAttribute('id', 'share_'+fileId);
+	
+	//mover -> share_button
+	mover = mover.nextElementSibling
+	mover.setAttribute('onclick', 'shareFile('+fileId+')');
+	mover.setAttribute('form', '');
+	
 	
 	return result;
 }
@@ -71,6 +77,16 @@ function deleteFile(id) {
 		let deleteButton = document.getElementById('delete_'+id).nextElementSibling;
 		deleteButton.setAttribute('form', 'delete_'+id);
 	}
+}
+
+function shareFile(id) {
+	let target = prompt('Enter username of target')
 	
-	
+	if(target != null) {
+		let shareForm = document.getElementById('share_'+id);
+		shareForm.setAttribute('action', 'share_file/'+id+'/'+target);
+		
+		let shareButton = shareForm.nextElementSibling;
+		shareButton.setAttribute('form', 'share_'+id);
+	}
 }

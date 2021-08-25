@@ -31,7 +31,7 @@
 		<h1>${msg}</h1>
 	</div>
 	<div class="container" style="margin-top: 110px">
-		<button onclick="location.href = './files';">Documents</button>
+		<button onclick="location.href = '/files';">Documents</button>
 	</div>
 </body>
 </html>
