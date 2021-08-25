@@ -41,11 +41,12 @@ function makeFileDiv(fileId, path, title, typePath) {
 	mover.setAttribute('id', 'delete_'+fileId);
 	
 	//mover -> delete_button
-	mover = mover.firstElementChild;
-	mover.setAttribute('form', 'delete_'+fileId);
+	mover = mover.nextElementSibling;
+	mover.setAttribute('onclick', 'deleteFile('+fileId+')');
+	mover.setAttribute('form', '');
 	
 	//mover -> file_type icon
-	mover = mover.parentElement.nextElementSibling.firstElementChild;
+	mover = mover.nextElementSibling.firstElementChild;
 	mover.setAttribute('src', typePath);
 	
 	//mover -> file-title
@@ -57,18 +58,19 @@ function makeFileDiv(fileId, path, title, typePath) {
 	mover.setAttribute('action', 'download/'+fileId);
 	mover.setAttribute('id', 'download_'+fileId);
 	
-	//mover -> download_button
-	mover = mover.firstElementChild;
-	mover.setAttribute('form', 'download_'+fileId);
-	
 	//mover -> share_form
-	mover = mover.parentElement.nextElementSibling
+	mover = mover.nextElementSibling
 	mover.setAttribute('action', 'share/'+fileId);
 	mover.setAttribute('id', 'share_'+fileId);
 	
-	//mover -> share_button
-	mover = mover.firstElementChild;
-	mover.setAttribute('form', 'share_'+fileId);
-	
 	return result;
+}
+
+function deleteFile(id) {
+	if(confirm('Are you sure?\nThere is no recovery.')) {
+		let deleteButton = document.getElementById('delete_'+id).nextElementSibling;
+		deleteButton.setAttribute('form', 'delete_'+id);
+	}
+	
+	
 }

@@ -42,7 +42,7 @@ public class User {
 	@PrimaryKeyJoinColumn
 	Account account;
 	
-	@OneToMany(targetEntity = File.class, mappedBy = "owner")
+	@OneToMany(targetEntity = File.class, mappedBy = "owner", cascade = CascadeType.ALL)
 	private Set<File> ownedFiles;
 	
 	@ManyToMany

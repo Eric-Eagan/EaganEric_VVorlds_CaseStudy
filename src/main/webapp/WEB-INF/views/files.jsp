@@ -149,11 +149,11 @@
 			<div class="container">
 				<div class="box-container visible-box">
 					<form>
-						<button class="corner-box">
-							<img src="img/x.png" style="width: 18px; height: 18px;" alt="X">
-						</button>
+						
 					</form>
-					
+					<button class="corner-box">
+						<img src="img/x.png" style="width: 18px; height: 18px;" alt="X">
+					</button>
 					<div class="image-container">
 						<img src="" alt="icon"> 
 					</div> 
