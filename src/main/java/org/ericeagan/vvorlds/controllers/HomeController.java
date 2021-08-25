@@ -106,7 +106,7 @@ public class HomeController {
 		
 		newUser.setAccount(newAcc);
 		
-		us.save(newUser);
+		us.createUser(newUser);
 		as.save(newAcc);
 		
 		return "redirect:/login";
@@ -147,7 +147,7 @@ public class HomeController {
 		if (us.validatePassword(currentUser, paramMap.get("oldPass")[0])) {
 			currentUser.setPassword(paramMap.get("newPass")[0]);
 			if(us.validateUser(currentUser)) {
-				us.save(currentUser);
+				us.createUser(currentUser);
 				return "redirect:/account";
 			}else {
 				model.addAttribute("errorMessage", "Password must be between 4 and 100 characters.");
