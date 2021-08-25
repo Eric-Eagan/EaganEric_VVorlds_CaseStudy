@@ -44,6 +44,16 @@ class FileTypeServiceTests {
 	}
 	
 	@Test
+	void testGetByType() {
+		FileType expected = new FileType();
+		Mockito.when(ftr.getByType("Document")).thenReturn(
+				expected);
+		FileType actual = fts.getByType("Document");
+		
+		assertEquals(expected, actual);
+	}
+	
+	@Test
 	void testGetByOwnerId() {
 		List<FileType> expected = List.of(new FileType(), new FileType());
 		Mockito.when(ftr.findAll()).thenReturn(

@@ -28,6 +28,11 @@ public class FileTypeServiceImpl implements FileTypeService {
 	}
 
 	@Override
+	public FileType getByType(String type) {
+		return ftr.getByType(type);
+	}
+
+	@Override
 	public List<FileType> getAllFileTypes() {
 		return ftr.findAll();
 	}
