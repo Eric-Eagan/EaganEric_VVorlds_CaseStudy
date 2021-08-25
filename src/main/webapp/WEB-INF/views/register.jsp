@@ -9,9 +9,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" type="text/css" href="css/default.css" >
-    <link rel="stylesheet" type="text/css" href="css/notIndex.css" >
-    <link rel="stylesheet" type="text/css" href="css/form.css" >
+    <link rel="stylesheet" type="text/css" href="/css/default.css" >
+    <link rel="stylesheet" type="text/css" href="/css/notIndex.css" >
+    <link rel="stylesheet" type="text/css" href="/css/form.css" >
 	<style>
 		input {
 			padding-top: 5px;
@@ -33,7 +33,7 @@
 			background-color: DarkGoldenRod;
 		}
 	</style>
-	<script type="text/javascript" src="js/accountForms.js"></script>
+	<script type="text/javascript" src="/js/accountForms.js"></script>
 </head>
 <body>
 	<div class="container">

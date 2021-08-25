@@ -34,37 +34,41 @@ function makeFileDiv(fileId, path, title, typePath) {
 	let result = document.getElementById('template').cloneNode(true);
 	result.removeAttribute('id');
 	
+	//parent -> container : mover -> delete_form
 	let parent = result.firstElementChild.firstElementChild;
 	let mover = parent.firstElementChild.firstElementChild;
+	mover.setAttribute('action', 'delete_file/'+fileId);
+	mover.setAttribute('id', 'delete_'+fileId);
 	
-	mover.setAttribute('onclick', 'deleteFile('+fileId+')');
+	//mover -> delete_button
+	mover = mover.firstElementChild;
+	mover.setAttribute('form', 'delete_'+fileId);
 	
-	mover = mover.nextElementSibling.firstElementChild;
+	//mover -> file_type icon
+	mover = mover.parentElement.nextElementSibling.firstElementChild;
 	mover.setAttribute('src', typePath);
 	
-	parent = parent.nextElementSibling;
-	
-	mover = parent.firstElementChild;
+	//mover -> file-title
+	mover = parent.nextElementSibling.firstElementChild;
 	mover.innerHTML = title;
 	
+	//mover -> download_form
 	mover = mover.nextElementSibling.firstElementChild;
+	mover.setAttribute('action', 'download/'+fileId);
+	mover.setAttribute('id', 'download_'+fileId);
 	
-	mover.setAttribute('onclick', 'downloadFile('+fileId+')');
+	//mover -> download_button
+	mover = mover.firstElementChild;
+	mover.setAttribute('form', 'download_'+fileId);
 	
-	mover = mover.nextElementSibling
-	mover.setAttribute('onclick', 'shareFile('+fileId+')');
+	//mover -> share_form
+	mover = mover.parentElement.nextElementSibling
+	mover.setAttribute('action', 'share/'+fileId);
+	mover.setAttribute('id', 'share_'+fileId);
+	
+	//mover -> share_button
+	mover = mover.firstElementChild;
+	mover.setAttribute('form', 'share_'+fileId);
 	
 	return result;
-}
-
-function downloadFile(id) {
-
-}
-
-function shareFile(id) {
-
-}
-
-function deleteFile(id) {
-
 }

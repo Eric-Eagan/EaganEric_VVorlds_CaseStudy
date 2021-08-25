@@ -5,8 +5,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>ERROR</title>
-<link rel="stylesheet" type="text/css" href="css/default.css" >
-<link rel="stylesheet" type="text/css" href="css/notIndex.css" >
+<link rel="stylesheet" type="text/css" href="/css/default.css" >
+<link rel="stylesheet" type="text/css" href="/css/notIndex.css" >
 <style type="text/css">
 	button {
 		background-color: DarkGoldenRod;
@@ -31,7 +31,7 @@
 		<h1>Oh, dear. Something has gone wrong.</h1>
 	</div>
 	<div class="container" style="margin-top: 110px">
-		<button onclick="location.href = './';">Return Home</button>
+		<button onclick="location.href = '/';">Return Home</button>
 	</div>
 </body>
 </html>

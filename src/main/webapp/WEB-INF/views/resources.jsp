@@ -7,10 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resources</title>
-    <link rel="stylesheet" type="text/css" href="css/default.css" >
-    <link rel="stylesheet" type="text/css" href="css/notIndex.css" >
-    <link rel="stylesheet" type="text/css" href="css/selectForm.css" >
-	<link rel="stylesheet" type="text/css" href="css/form.css" >
+    <link rel="stylesheet" type="text/css" href="/css/default.css" >
+    <link rel="stylesheet" type="text/css" href="/css/notIndex.css" >
+    <link rel="stylesheet" type="text/css" href="/css/selectForm.css" >
+	<link rel="stylesheet" type="text/css" href="/css/form.css" >
 	<style>
 		#res {
 			background-color: gold;
@@ -54,7 +54,7 @@
 			padding-right: 14px;
 		}
 	</style>
-    <script type="text/javascript" src="js/resources.js"></script>
+    <script type="text/javascript" src="/js/resources.js"></script>
 </head>
 <body>
 	<div class="container">

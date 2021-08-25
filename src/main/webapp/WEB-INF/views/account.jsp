@@ -6,9 +6,9 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title><%=session.getAttribute("currentUser") %>'s Account</title>
-	<link rel="stylesheet" type="text/css" href="css/default.css" >
-	<link rel="stylesheet" type="text/css" href="css/notIndex.css" >
-	<link rel="stylesheet" type="text/css" href="css/form.css" >
+	<link rel="stylesheet" type="text/css" href="/css/default.css" >
+	<link rel="stylesheet" type="text/css" href="/css/notIndex.css" >
+	<link rel="stylesheet" type="text/css" href="/css/form.css" >
 	<style>
 		input {
 			padding-top: 5px;
@@ -26,7 +26,7 @@
 			color: #1c1808;
 		}
 	</style>
-	<script type="text/javascript" src="js/accountForms.js"></script>
+	<script type="text/javascript" src="/js/accountForms.js"></script>
 </head>
 <body>
 	<div class="container">

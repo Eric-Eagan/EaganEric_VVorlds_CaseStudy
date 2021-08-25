@@ -99,6 +99,22 @@ public class User {
 		this.userRole = userRole;
 	}
 
+	public Set<File> getOwnedFiles() {
+		return ownedFiles;
+	}
+
+	public void setOwnedFiles(Set<File> ownedFiles) {
+		this.ownedFiles = ownedFiles;
+	}
+
+	public Set<File> getSharedFiles() {
+		return sharedFiles;
+	}
+
+	public void setSharedFiles(Set<File> sharedFiles) {
+		this.sharedFiles = sharedFiles;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", userRole=" + userRole + "]";

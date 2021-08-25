@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VVorlds</title>
-    <link rel="stylesheet" type="text/css" href="css/default.css" >
+    <link rel="stylesheet" type="text/css" href="/css/default.css" >
     <style>
 		.head_container {
 			display: flex;

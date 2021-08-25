@@ -6,9 +6,9 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Files</title>
-    <link rel="stylesheet" type="text/css" href="css/default.css" >
-    <link rel="stylesheet" type="text/css" href="css/notIndex.css" >
-	<link rel="stylesheet" type="text/css" href="css/form.css" >
+    <link rel="stylesheet" type="text/css" href="/css/default.css" >
+    <link rel="stylesheet" type="text/css" href="/css/notIndex.css" >
+	<link rel="stylesheet" type="text/css" href="/css/form.css" >
     <script>
     	function Document(id, path, typeId) {
     		this.id = id;
@@ -32,7 +32,7 @@
 		</c:forEach>
     	
     </script>
-    <script type="text/javascript" src="js/files.js"></script>
+    <script type="text/javascript" src="/js/files.js"></script>
 	<style>
 		img {
 			width: 135px;
@@ -143,13 +143,17 @@
 			</div>
 		</div>
 	</div>
+	
 	<div class="file-spacer" id="template"> 
 		<div class="file-container">
 			<div class="container">
 				<div class="box-container visible-box">
-					<button class="corner-box">
-						<img src="img/x.png" style="width: 18px; height: 18px;" alt="X">
-					</button>
+					<form>
+						<button class="corner-box">
+							<img src="img/x.png" style="width: 18px; height: 18px;" alt="X">
+						</button>
+					</form>
+					
 					<div class="image-container">
 						<img src="" alt="icon"> 
 					</div> 
@@ -158,12 +162,17 @@
 			<div class="file-label visible-box">
 				<span class="file-title">Title</span>
 				<div class="button-container">
-					<button class="file-button">Download</button>
-					<button class="file-button">Share</button>
+					<form>
+						<button class="file-button">Download</button>
+					</form>
+					<form>
+						<button class="file-button">Share</button>
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
+	
 	<script>showOwnedFiles();</script>
 </body>
 </html>

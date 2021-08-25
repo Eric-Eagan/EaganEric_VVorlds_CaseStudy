@@ -5,8 +5,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Logging Out</title>
-<link rel="stylesheet" type="text/css" href="css/default.css" >
-<link rel="stylesheet" type="text/css" href="css/notIndex.css" >
+<link rel="stylesheet" type="text/css" href="/css/default.css" >
+<link rel="stylesheet" type="text/css" href="/css/notIndex.css" >
 <style type="text/css">
 	button {
 		background-color: DarkGoldenRod;

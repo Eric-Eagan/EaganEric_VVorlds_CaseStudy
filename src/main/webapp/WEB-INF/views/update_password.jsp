@@ -6,9 +6,9 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Update Password</title>
-	<link rel="stylesheet" type="text/css" href="css/default.css" >
-	<link rel="stylesheet" type="text/css" href="css/notIndex.css" >
-	<link rel="stylesheet" type="text/css" href="css/form.css" >
+	<link rel="stylesheet" type="text/css" href="/css/default.css" >
+	<link rel="stylesheet" type="text/css" href="/css/notIndex.css" >
+	<link rel="stylesheet" type="text/css" href="/css/form.css" >
 	<style>
 		#SBM {
 			border-color: gray;
@@ -23,7 +23,7 @@
 			background-color: DarkGoldenRod;
 		}
 	</style>
-	<script type="text/javascript" src="js/accountForms.js"></script>
+	<script type="text/javascript" src="/js/accountForms.js"></script>
 </head>
 <body>
 	<div class="container">

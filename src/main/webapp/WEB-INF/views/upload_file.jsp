@@ -6,10 +6,10 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Upload File</title>
-	<link rel="stylesheet" type="text/css" href="css/default.css" >
-	<link rel="stylesheet" type="text/css" href="css/notIndex.css" >
-    <link rel="stylesheet" type="text/css" href="css/selectForm.css" >
-	<link rel="stylesheet" type="text/css" href="css/form.css" >
+	<link rel="stylesheet" type="text/css" href="/css/default.css" >
+	<link rel="stylesheet" type="text/css" href="/css/notIndex.css" >
+    <link rel="stylesheet" type="text/css" href="/css/selectForm.css" >
+	<link rel="stylesheet" type="text/css" href="/css/form.css" >
 	<style>
 		input {
 			padding-top: 5px;
@@ -52,7 +52,7 @@
 		}
 		
 	</style>
-	<script type="text/javascript" src="js/accountForms.js"></script>
+	<script type="text/javascript" src="/js/accountForms.js"></script>
 </head>
 <body>
 	<div class="container">
