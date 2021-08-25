@@ -45,7 +45,7 @@ class AccountRepositoryTests {
 	
 	@Test
 	void testGetById() {
-		Account actual = (Account) ar.getById(expected.getUserId());
+		Account actual = ar.getById(expected.getUserId());
 		assertEquals(expected.getUserId(), actual.getUserId());
 	}
 }

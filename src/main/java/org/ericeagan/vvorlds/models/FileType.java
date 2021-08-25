@@ -52,4 +52,37 @@ public class FileType {
 	public void setImgPath(String imgPath) {
 		this.imgPath = imgPath;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		result = prime * result + typeId;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FileType other = (FileType) obj;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
+			return false;
+		if (typeId != other.typeId)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "FileType [typeId=" + typeId + ", type=" + type + ", imgPath=" + imgPath + "]";
+	}
 }

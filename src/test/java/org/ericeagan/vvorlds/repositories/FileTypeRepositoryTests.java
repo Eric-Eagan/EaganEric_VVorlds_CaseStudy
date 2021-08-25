@@ -2,8 +2,7 @@ package org.ericeagan.vvorlds.repositories;
 
 import static org.junit.Assert.assertEquals;
 
-import org.ericeagan.vvorlds.models.Account;
-import org.ericeagan.vvorlds.models.User;
+import org.ericeagan.vvorlds.models.FileType;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -19,44 +18,36 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @EnableConfigurationProperties
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class UserRepositoryTests {
-	
-	private UserRepository ur;
-	private User expected;
+class FileTypeRepositoryTests {
+
+	private FileTypeRepository ftr;
+	private FileType expected;
 	
 	@Autowired
-	public UserRepositoryTests(UserRepository ur) {
-		this.ur = ur;
+	public FileTypeRepositoryTests(FileTypeRepository ftr) {
+		this.ftr = ftr;
 	}
 	
 	@BeforeAll
 	void setup() {
-		User u = new User("John", "john1234");
-		Account a = new Account();
-		u.setAccount(a);
-		a.setUser(u);
-		expected = ur.save(u);
-		
+		expected = new FileType("test", "test");
+		expected = ftr.save(expected);
 	}
 	
 	@AfterAll
 	void clearSetup() {
-		ur.delete(expected);
+		ftr.delete(expected);
 	}
 	
 	@Test
 	void testGetById() {
-		User actual = ur.getById(expected.getId());
-		System.out.println(actual.getClass());
-		System.out.println(expected.getClass());
-		assertEquals(expected.getId(), actual.getId());
+		FileType actual = ftr.getById(expected.getTypeId());
+		assertEquals(expected.getTypeId(), actual.getTypeId());
 	}
 	
 	@Test
-	void testGetByUsername() {
-		User actual = ur.getByUsername(expected.getUsername());
-		System.out.println(actual.getClass());
-		System.out.println(expected.getClass());
+	void testGetByType() {
+		FileType actual = ftr.getByType(expected.getType());
 		assertEquals(expected, actual);
 	}
 }
