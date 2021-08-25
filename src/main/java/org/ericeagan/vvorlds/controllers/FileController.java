@@ -1,6 +1,11 @@
 package org.ericeagan.vvorlds.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,13 +18,16 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.ericeagan.vvorlds.models.File;
@@ -102,6 +110,7 @@ public class FileController {
 		try {
 			Files.delete(Paths.get(file.getPath()));
 		} catch (IOException e) {
+			e.getClass();
 		}
 
 		Set<User> sharers = file.getSharers();
@@ -136,6 +145,40 @@ public class FileController {
 		fs.save(file);
 		
 		model.addAttribute("msg", "File shared with "+username);
+		return "upload_confirmation";
+	}
+	
+	@GetMapping("/download_file/{id}")
+	public ResponseEntity<Resource> downloadFileFromLocal(HttpSession session, @PathVariable int id,
+			HttpServletResponse httpServletResponse) {
+		File file = fs.getById(id);
+		
+		java.io.File test = new java.io.File(file.getPath());
+		if (!test.exists()) {
+			session.setAttribute("msg", "That file is missing, sorry. I'll remove it for you.");
+			deleteFile(id);
+			httpServletResponse.setHeader("Location", "/upload_confirmation");
+			httpServletResponse.setStatus(302);
+			return null;
+		}
+		
+		Path path = Paths.get(file.getPath());
+		Resource resource = null;
+		try {
+			resource = new UrlResource(path.toUri());
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		return ResponseEntity.ok()
+				.contentType(MediaType.parseMediaType("application/octet-stream"))
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+				.body(resource);
+	}
+	
+	@GetMapping("/upload_confirmation")
+	public String messageDisplay(HttpSession session, Model model) {
+		model.addAttribute("msg", session.getAttribute("msg"));
+		session.removeAttribute("msg");
 		return "upload_confirmation";
 	}
 }

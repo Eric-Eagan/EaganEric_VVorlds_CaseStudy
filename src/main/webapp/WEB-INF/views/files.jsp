@@ -160,7 +160,7 @@
 			<div class="file-label visible-box">
 				<span class="file-title">Title</span>
 				<div class="button-container">
-					<form method="post">
+					<form method="get">
 						<button class="file-button">Download</button>
 					</form>
 					<form method="post"></form>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Logging Out</title>
+<title>Notice</title>
 <link rel="stylesheet" type="text/css" href="/css/default.css" >
 <link rel="stylesheet" type="text/css" href="/css/notIndex.css" >
 <style type="text/css">
@@ -28,7 +28,7 @@
 </head>
 <body>
 	<div class="container">
-		<h1>${msg}</h1>
+		<h1 style="padding: 15px;"><%= request.getAttribute("msg")%></h1>
 	</div>
 	<div class="container" style="margin-top: 110px">
 		<button onclick="location.href = '/files';">Documents</button>
