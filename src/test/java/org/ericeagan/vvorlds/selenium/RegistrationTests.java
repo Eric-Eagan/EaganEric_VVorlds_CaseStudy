@@ -30,7 +30,7 @@ class RegistrationTests {
 			Account a = new Account();
 			u.setAccount(a);
 			a.setUser(u);
-			us.save(u);
+			us.createUser(u);
 		}
 	}
 	

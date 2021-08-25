@@ -29,7 +29,7 @@ class AccountTests {
 			Account a = new Account();
 			u.setAccount(a);
 			a.setUser(u);
-			us.save(u);
+			us.createUser(u);
 		}
 	}
 	
@@ -101,7 +101,7 @@ class AccountTests {
 		Account account = new Account();
 		user.setAccount(account);
 		account.setUser(user);
-		us.save(user);
+		us.createUser(user);
 		
 		login("test","test");
 		
