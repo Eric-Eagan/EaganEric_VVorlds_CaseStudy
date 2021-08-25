@@ -5,6 +5,6 @@ import org.junit.platform.suite.api.SelectPackages;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitPlatform.class)
-@SelectPackages("org.ericeagan.vvorlds.repositories")
+@SelectPackages({"org.ericeagan.vvorlds.repositories"})
 public class RepositoriesSuite {
 }
