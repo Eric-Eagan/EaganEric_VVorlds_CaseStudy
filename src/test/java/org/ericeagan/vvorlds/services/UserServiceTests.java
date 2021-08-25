@@ -1,7 +1,9 @@
 package org.ericeagan.vvorlds.services;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.AdditionalAnswers.returnsFirstArg;
 
 import org.ericeagan.vvorlds.models.User;
 import org.ericeagan.vvorlds.repositories.UserRepository;
@@ -28,11 +30,24 @@ class UserServiceTests {
 	@Test
 	void testSave() {
 		User expected = new User("Test", "testPass");
-		Mockito.when(ur.save(Mockito.any(User.class))).thenReturn(
-				expected);
+		Mockito.when(ur.save(Mockito.any(User.class))).then(
+				returnsFirstArg());
 		User actual = us.save(expected);
 		
 		assertEquals(expected, actual);
+	}
+	
+	@Test
+	void testCreateUser() {
+		User expected = new User("Test", "testPass");
+		User actual = new User("Test", "testPass");
+		Mockito.when(ur.save(Mockito.any(User.class))).then(
+				returnsFirstArg());
+		Mockito.when(pe.encode(Mockito.anyString())).thenReturn(
+				"1234");
+		actual = us.createUser(actual);
+		
+		assertNotEquals(expected.getPassword(), actual.getPassword());
 	}
 	
 	@Test
