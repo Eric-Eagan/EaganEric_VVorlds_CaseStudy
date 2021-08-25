@@ -28,32 +28,24 @@ public class VVorldsApplication {
 				user.setUserRole("ROLE_ADMIN");
 				user.setAccount(account);
 				account.setUser(user);
-				us.save(user);
+				us.createUser(user);
 			}		   };
 	}
-	/*
+	
 	@Bean
 	public CommandLineRunner insertFileTypes(FileTypeService fts) {
 		return args -> {
-			FileType doc = fts.
-			FileType img = new FileType("Image", "img/image.png");
+			FileType doc = fts.getByType("Document");
+			FileType img = fts.getByType("Image");
 			
-			if (user == null) {
+			if (doc == null) {
 				doc = new FileType("Document", "img/document.png");
-				Account account = new Account();
-				user.setUserRole("ROLE_ADMIN");
-				user.setAccount(account);
-				account.setUser(user);
-				us.save(user);
+				fts.save(doc);
 			}
 			
-			if (user == null) {
+			if (img == null) {
 				img = new FileType("Image", "img/image.png");
-				Account account = new Account();
-				user.setUserRole("ROLE_ADMIN");
-				user.setAccount(account);
-				account.setUser(user);
-				us.save(user);
+				fts.save(img);
 			}		   };
-	}*/
+	}
 }
