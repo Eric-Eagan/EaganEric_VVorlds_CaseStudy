@@ -12,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
 class AccountTests {
@@ -112,6 +113,8 @@ class AccountTests {
 		unlockBtn.click();
 		unlockBtn.click();
 		driver.switchTo().alert().accept();
+		
+		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 		
 		assertNull(us.getByUsername("test"));
 	}
