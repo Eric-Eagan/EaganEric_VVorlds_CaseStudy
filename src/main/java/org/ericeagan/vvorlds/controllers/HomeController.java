@@ -238,8 +238,13 @@ public class HomeController {
 	 */
 	@PostMapping("/updatePassword")
 	public String updatePassword(HttpServletRequest request, HttpSession session, Model model) {
-		User currentUser = us.getById((Integer) session.getAttribute(CUID));
-		
+		User currentUser;
+		try {
+			currentUser = us.getByUsername((String) session.getAttribute(CU));
+		} catch (UserNotFoundException e) {
+			model.addAttribute("msg", "How do you not exist?");
+			return "upload_confirmation";
+		}
 		Map<String, String[]> paramMap = request.getParameterMap();
 		
 		if (us.validatePassword(currentUser, paramMap.get("oldPass")[0])) {
@@ -249,11 +254,11 @@ public class HomeController {
 				return "redirect:/account";
 			}else {
 				model.addAttribute("errorMessage", "Password must be between 4 and 100 characters.");
-				return "updatePassword";
+				return "update_password";
 			}
 		}
 		
 		model.addAttribute("errorMessage", "Bad Credentials");
-		return "updatePassword";
+		return "update_password";
 	}
 }

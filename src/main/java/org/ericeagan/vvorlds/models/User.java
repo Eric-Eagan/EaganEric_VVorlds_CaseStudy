@@ -1,5 +1,6 @@
 package org.ericeagan.vvorlds.models;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -85,6 +86,8 @@ public class User {
 	 */
 	public User() {
 		this.userRole = "ROLE_USER";
+		this.ownedFiles = new HashSet<>();
+		this.sharedFiles = new HashSet<>();
 	}
 	
 	/**

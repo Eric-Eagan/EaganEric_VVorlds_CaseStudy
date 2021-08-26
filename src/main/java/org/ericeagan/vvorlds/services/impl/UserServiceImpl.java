@@ -1,16 +1,10 @@
 package org.ericeagan.vvorlds.services.impl;
 
-import java.util.Set;
-
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
-
 import org.ericeagan.vvorlds.exceptions.UserNotFoundException;
 import org.ericeagan.vvorlds.models.User;
 import org.ericeagan.vvorlds.repositories.UserRepository;
 import org.ericeagan.vvorlds.services.UserService;
+import org.ericeagan.vvorlds.validators.MyValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -32,9 +26,8 @@ public class UserServiceImpl implements UserService {
 	 * Password Encoder
 	 */
 	private PasswordEncoder pswdEncoder;
-
-	private ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-	private Validator validator = factory.getValidator();
+	
+	private MyValidator validator = new MyValidator();
 	
 	/**
 	 * Autowired Constructor for injecting UserRepository and Encoder
@@ -84,8 +77,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean validateUser(User user) {
-		Set<ConstraintViolation<User>> violations = validator.validate(user);
-		return violations.isEmpty();
+		return validator.validateUser(user);
 	}
 
 	@Override
