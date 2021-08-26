@@ -17,7 +17,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "accounts")
-public class Account {
+public class Account{
 	/**
 	 * Id, taken from the User entity associated with the Account
 	 */

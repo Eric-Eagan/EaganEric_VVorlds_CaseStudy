@@ -1,6 +1,5 @@
 package org.ericeagan.vvorlds.models;
 
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,9 +29,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "users")
 @NamedQuery(name="User.getAllUsers", query = "SELECT u FROM User u")
-public class User implements Serializable{
-	private static final long serialVersionUID = 1L;
-
+public class User{
 	/**
 	 * DB id auto-generated PK
 	 */
