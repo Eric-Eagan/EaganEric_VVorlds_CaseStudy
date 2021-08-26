@@ -72,13 +72,7 @@ public class HomeController {
 //		Collection<? extends GrantedAuthority> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
 //		System.out.println(authorities);
 		
-		User user;
-		try {
-			user = us.getByUsername(((UserDetails)principal).getUsername());
-		} catch (UserNotFoundException e) {
-			MyErrorController.noticeSetup(model, e.getMessage(), LOGOUT_JSP, "Logout");
-			return "notice";
-		}
+		User user = us.getByUsername(((UserDetails)principal).getUsername());;
 		
 		session.setAttribute(CU, user.getUsername());
 		session.setAttribute(CUID, user.getId());
@@ -130,7 +124,7 @@ public class HomeController {
 	 */
 	@GetMapping("/account")
 	public String showAccountPage(Model model, HttpSession session) {
-		User userDB = us.getById((Integer) session.getAttribute(CUID));
+		User userDB = us.getByUsername((String) session.getAttribute(CU));
 		Account accountDB = as.getById(userDB.getId());
 		
 		UserDTO user = new UserDTO(userDB);
@@ -177,7 +171,7 @@ public class HomeController {
 		
 		Map<String, String[]> paramMap = request.getParameterMap();
 		
-		if (!us.availableUsername(userDTO.getPassword())) {
+		if (!us.availableUsername(userDTO.getUsername())) {
 			result.rejectValue("username", "error.user", "Username already taken.");
 		}
 		if (result.hasErrors()) {
@@ -207,7 +201,7 @@ public class HomeController {
 	 */
 	@PostMapping("/updateAccount")
 	public String updateAccount(HttpSession session, @ModelAttribute("account") AccountDTO accountDTO) {
-		User user = us.getById((Integer) session.getAttribute(CUID));
+		User user = us.getByUsername((String) session.getAttribute(CU));
 		Account account = as.getById(user.getId());
 		
 		account.setFirstName(accountDTO.getFirstName());
@@ -229,7 +223,7 @@ public class HomeController {
 	 */
 	@PostMapping("/deleteAccount")
 	public String deleteAccount(HttpSession session) {
-		User user = us.getById((Integer) session.getAttribute(CUID));
+		User user = us.getByUsername((String) session.getAttribute(CU));
 		Account account = as.getById(user.getId());
 
 		as.deleteAccount(account);
@@ -253,7 +247,7 @@ public class HomeController {
 	public String updatePassword(HttpServletRequest request, HttpSession session, Model model) {
 		User currentUser;
 		try {
-			currentUser = us.getByUsername((String) session.getAttribute(CU));
+			currentUser = us.getById((Integer) session.getAttribute(CUID));
 		} catch (UserNotFoundException e) {
 			MyErrorController.noticeSetup(model, "You don't exist... How do you not exist?", LOGOUT_JSP, "Logout");
 			return "notice";

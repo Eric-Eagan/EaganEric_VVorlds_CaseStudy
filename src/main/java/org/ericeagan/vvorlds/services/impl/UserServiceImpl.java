@@ -53,16 +53,16 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getById(Integer id) {
-		return userRepository.getById(id);
+	public User getById(Integer id) throws UserNotFoundException {
+		User user = userRepository.getById(id);
+		if (user == null) 
+			throw new UserNotFoundException("User "+ id +" not found");
+		return user;
 	}
 
 	@Override
-	public User getByUsername(String username) throws UserNotFoundException{
-		User user = userRepository.getByUsername(username);
-		if (user == null) 
-			throw new UserNotFoundException("User "+ username +" not found");
-		return user;
+	public User getByUsername(String username){
+		return userRepository.getByUsername(username);
 	}
 	
 	@Override

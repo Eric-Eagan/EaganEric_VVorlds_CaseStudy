@@ -52,7 +52,7 @@ class UserServiceTests {
 	}
 	
 	@Test
-	void testGetById() {
+	void testGetById() throws UserNotFoundException {
 		User expected = new User("Test", "testPass");
 		Mockito.when(ur.getById(1)).thenReturn(
 				expected);
@@ -62,7 +62,7 @@ class UserServiceTests {
 	}
 	
 	@Test
-	void testGetByUsername() throws UserNotFoundException {
+	void testGetByUsername(){
 		User expected = new User("Test", "testPass");
 		Mockito.when(ur.getByUsername("Test")).thenReturn(
 				expected);

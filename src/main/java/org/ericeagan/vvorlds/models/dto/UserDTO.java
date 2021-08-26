@@ -1,5 +1,8 @@
 package org.ericeagan.vvorlds.models.dto;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.ericeagan.vvorlds.models.User;
 
 /**
@@ -12,11 +15,15 @@ public class UserDTO {
 	/**
 	 * 
 	 */
+	@NotNull
+	@Size(min=2, max=25, message="Username must be between 2 and 25 characters.")
 	String username;
 	
 	/**
 	 * 
 	 */
+	@NotNull
+	@Size(min=4, max=100, message="Password must be between 4 and 100 characters.")
 	String password;
 
 	public UserDTO() {

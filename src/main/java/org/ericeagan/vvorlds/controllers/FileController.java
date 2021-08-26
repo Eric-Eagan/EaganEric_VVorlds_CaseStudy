@@ -56,6 +56,7 @@ public class FileController {
 	/**
 	 * string constants
 	 */
+	private static final String CU = "currentUser";
 	private static final String CUID = "currentUserId";
 	private static final String FILEDIR = "fileDir";
 	private static final String NOTICE_JSP = "notice";
@@ -140,7 +141,7 @@ public class FileController {
 		}
 		MyErrorController.noticeSetup(model, "File uploaded", FILES_JSP, DOCUMENTS);
 		
-		File dbFile = new File(us.getById((Integer) session.getAttribute(CUID)), 
+		File dbFile = new File(us.getByUsername((String) session.getAttribute(CU)), 
 						new HashSet<>(), 
 						fts.getById(file.getFileType()),
 						file.getFileName(),
@@ -196,6 +197,8 @@ public class FileController {
 		User user;
 		try {
 			user = us.getByUsername(username);
+			if (user == null)
+				throw new UserNotFoundException("User not found");
 		} catch (UserNotFoundException e) {
 			MyErrorController.noticeSetup(model, "User " + username + " does not exist", FILES_JSP, DOCUMENTS);
 			return NOTICE_JSP;

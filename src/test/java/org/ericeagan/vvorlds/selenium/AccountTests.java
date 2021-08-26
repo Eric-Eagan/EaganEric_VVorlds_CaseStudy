@@ -95,7 +95,7 @@ class AccountTests {
 	}
 	
 	@Test
-	void testDeleteAccount() throws UserNotFoundException {
+	void testDeleteAccount() {
 		// Opens the registration page for this web application
 		driver.get("http://localhost:8080/");
 		
@@ -115,7 +115,7 @@ class AccountTests {
 		unlockBtn.click();
 		driver.switchTo().alert().accept();
 		
-		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		
 		assertNull(us.getByUsername("test"));
 	}

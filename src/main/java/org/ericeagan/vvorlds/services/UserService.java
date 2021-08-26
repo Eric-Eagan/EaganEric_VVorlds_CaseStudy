@@ -32,17 +32,17 @@ public interface UserService {
 	 * 
 	 * @param id of a user in DB
 	 * @return User with that Id
+	 * @throws UserNotFoundException 
 	 */
-	User getById(Integer id);
+	User getById(Integer id) throws UserNotFoundException;
 	
 	/**
 	 * Get user associated with this Username
 	 * 
 	 * @param username of a user in DB
 	 * @return That user
-	 * @throws UserNotFoundException
 	 */
-	User getByUsername(String username) throws UserNotFoundException;
+	User getByUsername(String username);
 	
 	/**
 	 * Tries to retrieve user from database with that name
