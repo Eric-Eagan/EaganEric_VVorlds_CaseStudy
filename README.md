@@ -25,12 +25,12 @@ As an admin I want control over resources and the types labels can be called, so
 **Aceptance criteria:** * Admin can upload new pictures and assign File Type labels to them * Users will be given them alongside default file types when uploading * Admin will be able to add resource title and link to collection of resources * Add resources will be presented alongside default resources
 
 ## Technical Challenges
-##### Transferring data from Database to Java Objects to Javascript to HTML
+#### Transferring data from Database to Java Objects to Javascript to HTML
  > It's a chain of communication through different formats that don't always communicate happily with each other.  
  > Database to Java we learned early on using Spring Data JPA. Using Entities to map database tables to Java objects felt quite inutitive.  
  > Javascript to HTML was also not bad, came down to learning the Document Object Model (DOM) and then keeping track of which elements were being edited.  
  > The worst was Java to Javascript. Passing the Java objects had to be passed through the model or session to be accessed, but those each have different ways you are able to access them. In addition, certain JSP elements can skip the script file entirely using scriplets to access the required data.  
-##### File upload and download at a distance
+#### File upload and download at a distance
  > Being the main function of the app, this was also the part that took was more complicated.  
  > Upload has a specific path it follows.  
  > Local file writing itself is somewhat basic, but doing it remotely makes things less straightforward.  
