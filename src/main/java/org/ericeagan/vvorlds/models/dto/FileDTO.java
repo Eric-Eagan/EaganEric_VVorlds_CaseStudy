@@ -1,6 +1,8 @@
 package org.ericeagan.vvorlds.models.dto;
 
-	/**
+import javax.validation.constraints.NotNull;
+
+/**
 	 * DTO for retrieving relevant data from view
 	 * 
 	 * @author Eric
@@ -10,11 +12,13 @@ public class FileDTO {
 	/**
 	 * Name of the file to visible to users
 	 */
+	@NotNull(message="File name must not be null")
 	String fileName;
 	
 	/**
 	 * id of fileType for this File
 	 */
+	@NotNull
 	int fileType;
 	
 	public FileDTO() {

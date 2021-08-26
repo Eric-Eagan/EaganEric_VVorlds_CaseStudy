@@ -29,6 +29,7 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.ericeagan.vvorlds.exceptions.UserNotFoundException;
 import org.ericeagan.vvorlds.models.File;
@@ -120,14 +121,14 @@ public class FileController {
 	 */
 	@PostMapping("/uploadFile")
 	public String uploadFile(@RequestParam("file") MultipartFile actualFile, Model model, HttpSession session, 
-			@ModelAttribute("newFile")FileDTO file) throws IOException {
+			@Valid @ModelAttribute("newFile")FileDTO file) throws IOException {
 		
 		java.io.File directory = new java.io.File((String)session.getAttribute(FILEDIR));
 		 if (! directory.exists()){
 			directory.mkdir();
 	    }
 		
-		if (!Objects.requireNonNull(actualFile, "Image file is null.").isEmpty()) {
+		if (!Objects.requireNonNull(actualFile, "File is null.").isEmpty()) {
 			try(BufferedOutputStream outputStream = new BufferedOutputStream(
 					new FileOutputStream(new java.io.File(
 							(String)session.getAttribute(FILEDIR), 
@@ -145,7 +146,7 @@ public class FileController {
 						new HashSet<>(), 
 						fts.getById(file.getFileType()),
 						file.getFileName(),
-						(String)session.getAttribute(FILEDIR) + "\\" + actualFile.getOriginalFilename());
+						"/"+actualFile.getOriginalFilename());
 		
 		fs.save(dbFile);
 		
@@ -159,11 +160,11 @@ public class FileController {
 	 * @return string redirecting to /files handler
 	 */
 	@PostMapping("/delete_file/{id}")
-	public String deleteFile(@PathVariable int id) {
+	public String deleteFile(HttpSession session, @PathVariable int id) {
 		File file = fs.getById(id);
 		
 		try {
-			Files.delete(Paths.get(file.getPath()));
+			Files.delete(Paths.get(session.getAttribute(FILEDIR) + file.getPath()));
 		} catch (IOException e) {
 			e.getClass();
 		}
@@ -184,11 +185,12 @@ public class FileController {
 	
 	/**
 	 * Shares file associated with id with user username
+	 * Unshares if already shared with that user
 	 * Updates DB to represent this
 	 * 
 	 * @param model for returning a message
 	 * @param id of file to be shared
-	 * @param username of user to be shared with
+	 * @param username of user to be shared/unshared with
 	 * @return the name of notice JSP to be sent to view
 	 */
 	@PostMapping("/share_file/{id}/{username}")
@@ -205,14 +207,19 @@ public class FileController {
 		}
 		
 		File file = fs.getById(id);
-		
-		user.getSharedFiles().add(file);
-		file.getSharers().add(user);
+		if (file.getSharers().contains(user)) {
+			user.getSharedFiles().remove(file);
+			file.getSharers().remove(user);
+			MyErrorController.noticeSetup(model, "File unshared with "+username, FILES_JSP, DOCUMENTS);
+		}else {
+			user.getSharedFiles().add(file);
+			file.getSharers().add(user);
+			MyErrorController.noticeSetup(model, "File shared with "+username, FILES_JSP, DOCUMENTS);
+		}
 		
 		us.save(user);
 		fs.save(file);
 		
-		MyErrorController.noticeSetup(model, "File shared with "+username, FILES_JSP, DOCUMENTS);
 		return NOTICE_JSP;
 	}
 	
@@ -229,16 +236,17 @@ public class FileController {
 			HttpServletResponse httpServletResponse) {
 		File file = fs.getById(id);
 		
-		java.io.File test = new java.io.File(file.getPath());
+		System.out.println(session.getAttribute(FILEDIR) + file.getPath());
+		java.io.File test = new java.io.File(session.getAttribute(FILEDIR) + file.getPath());
 		if (!test.exists()) {
 			session.setAttribute("msg", "That file is missing, sorry. I'll remove it for you.");
-			deleteFile(id);
+			deleteFile(session, id);
 			httpServletResponse.setHeader("Location", "/notice");
 			httpServletResponse.setStatus(302);
 			return null;
 		}
 		
-		Path path = Paths.get(file.getPath());
+		Path path = Paths.get(session.getAttribute(FILEDIR) + file.getPath());
 		Resource resource = null;
 		try {
 			resource = new UrlResource(path.toUri());

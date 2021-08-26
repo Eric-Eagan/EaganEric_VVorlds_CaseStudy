@@ -88,7 +88,7 @@ function deleteFile(id) {
 }
 
 function shareFile(id) {
-	let target = prompt('Enter username of target')
+	let target = prompt('Enter username of target\nReshare to same user to unshare file')
 	
 	if(target != null) {
 		let shareForm = document.getElementById('share_'+id);
