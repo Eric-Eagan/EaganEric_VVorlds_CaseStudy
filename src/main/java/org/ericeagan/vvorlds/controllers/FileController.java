@@ -58,7 +58,7 @@ public class FileController {
 	 */
 	private static final String CUID = "currentUserId";
 	private static final String FILEDIR = "fileDir";
-	private static final String MESSAGE_JSP = "upload_confirmation";
+	private static final String MESSAGE_JSP = "notice";
 	
 	/**
 	 * Autowired constructor to inject services
@@ -133,10 +133,10 @@ public class FileController {
 				outputStream.flush();
 			}
 		} else {
-			model.addAttribute("msg", "No file selected");
+			MyErrorController.noticeSetup(model, "No file selected", "files", "Documents");
 			return MESSAGE_JSP;
 		}
-		model.addAttribute("msg", "File uploaded");
+		MyErrorController.noticeSetup(model, "File uploaded", "files", "Documents");
 		
 		File dbFile = new File(us.getById((Integer) session.getAttribute(CUID)), 
 						new HashSet<>(), 
@@ -186,7 +186,7 @@ public class FileController {
 	 * @param model for returning a message
 	 * @param id of file to be shared
 	 * @param username of user to be shared with
-	 * @return the name of upload_confirmation JSP to be sent to view
+	 * @return the name of notice JSP to be sent to view
 	 */
 	@PostMapping("/share_file/{id}/{username}")
 	public String shareFile(Model model, @PathVariable int id, @PathVariable String username) {
@@ -195,7 +195,7 @@ public class FileController {
 		try {
 			user = us.getByUsername(username);
 		} catch (UserNotFoundException e) {
-			model.addAttribute("msg", "User " + username + " does not exist");
+			MyErrorController.noticeSetup(model, "User " + username + " does not exist", "files", "Documents");
 			return MESSAGE_JSP;
 		}
 		
@@ -207,7 +207,7 @@ public class FileController {
 		us.save(user);
 		fs.save(file);
 		
-		model.addAttribute("msg", "File shared with "+username);
+		MyErrorController.noticeSetup(model, "File shared with "+username, "files", "Documents");
 		return MESSAGE_JSP;
 	}
 	
@@ -228,7 +228,7 @@ public class FileController {
 		if (!test.exists()) {
 			session.setAttribute("msg", "That file is missing, sorry. I'll remove it for you.");
 			deleteFile(id);
-			httpServletResponse.setHeader("Location", "/upload_confirmation");
+			httpServletResponse.setHeader("Location", "/notice");
 			httpServletResponse.setStatus(302);
 			return null;
 		}
@@ -244,20 +244,5 @@ public class FileController {
 				.contentType(MediaType.parseMediaType("application/octet-stream"))
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
 				.body(resource);
-	}
-	
-	/**
-	 * Special access to upload_confirmation using session
-	 * Sets up model with message to be displayed, also cleans session of old message
-	 * 
-	 * @param session for accessing message
-	 * @param model assigning message for display
-	 * @return the name of upload_confirmation JSP to be sent to view
-	 */
-	@GetMapping("/upload_confirmation")
-	public String messageDisplay(HttpSession session, Model model) {
-		model.addAttribute("msg", session.getAttribute("msg"));
-		session.removeAttribute("msg");
-		return MESSAGE_JSP;
 	}
 }

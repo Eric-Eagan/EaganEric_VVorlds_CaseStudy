@@ -31,7 +31,9 @@
 		<h1 style="padding: 15px;"><%= request.getAttribute("msg")%></h1>
 	</div>
 	<div class="container" style="margin-top: 110px">
-		<button onclick="location.href = '/files';">Documents</button>
+		<button onclick=<%= "location.href='/"+request.getAttribute("send")+"';"%>>
+			<%= request.getAttribute("sendName") %>
+		</button>
 	</div>
 </body>
 </html>

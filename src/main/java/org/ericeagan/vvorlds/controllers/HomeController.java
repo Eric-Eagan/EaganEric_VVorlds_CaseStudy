@@ -74,8 +74,8 @@ public class HomeController {
 		try {
 			user = us.getByUsername(((UserDetails)principal).getUsername());
 		} catch (UserNotFoundException e) {
-			model.addAttribute("msg", e.getMessage());
-			return "upload_confirmation";
+			MyErrorController.noticeSetup(model, e.getMessage(), "logout", "Logout");
+			return "notice";
 		}
 		
 		session.setAttribute(CU, user.getUsername());
@@ -242,8 +242,8 @@ public class HomeController {
 		try {
 			currentUser = us.getByUsername((String) session.getAttribute(CU));
 		} catch (UserNotFoundException e) {
-			model.addAttribute("msg", "How do you not exist?");
-			return "upload_confirmation";
+			MyErrorController.noticeSetup(model, "You don't exist... How do you not exist?", "logout", "Logout");
+			return "notice";
 		}
 		Map<String, String[]> paramMap = request.getParameterMap();
 		
