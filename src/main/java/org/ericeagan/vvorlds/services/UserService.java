@@ -61,6 +61,19 @@ public interface UserService {
 	 * @return true if it matches once encoded
 	 */
 	boolean validatePassword(User user, String password);
+	
+	/**
+	 * Checks if given user passes validation
+	 * 
+	 * @param user to be validated
+	 * @return true or false based on if valid
+	 */
 	boolean validateUser(User user);
+	
+	/**
+	 * Deletes User from DB
+	 * 
+	 * @param user to be deleted
+	 */
 	void deleteUser(User user);
 }
