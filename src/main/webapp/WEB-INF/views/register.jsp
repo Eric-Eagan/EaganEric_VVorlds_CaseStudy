@@ -54,15 +54,15 @@
 				</h2>
 				<form:form name="user_input" action="registerNewUser" method="post"
 				style="display:flex; flex-direction: column; padding-bottom:10px"
-				modelAttribute="newUser">
+				modelAttribute="user">
 					<div class="input_block">
 						<form:errors path="username" cssClass="error" /><br>
-						<label>Username</label>
+						<form:label path="username">Username</form:label>
 						<form:input type="text" path="username" name="username" id="UN" placeholder="Username" onKeyUp="verify()"/>
 					</div>
 					<div class="input_block">
 						<form:errors path="password" cssClass="error" /><br>
-						<label>Password</label>
+						<form:label path="password">Password</form:label>
 						<form:input type="password" path="password" name="password" id="PW" placeholder="Password" onKeyUp="verify()"/>
 					</div>
 					<div class="input_block">

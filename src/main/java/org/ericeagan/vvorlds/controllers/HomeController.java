@@ -1,6 +1,5 @@
 package org.ericeagan.vvorlds.controllers;
 
-import java.util.Collection;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,10 +9,11 @@ import javax.validation.Valid;
 import org.ericeagan.vvorlds.exceptions.UserNotFoundException;
 import org.ericeagan.vvorlds.models.Account;
 import org.ericeagan.vvorlds.models.User;
+import org.ericeagan.vvorlds.models.dto.AccountDTO;
+import org.ericeagan.vvorlds.models.dto.UserDTO;
 import org.ericeagan.vvorlds.services.AccountService;
 import org.ericeagan.vvorlds.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -43,6 +43,8 @@ public class HomeController {
 	 */
 	private static final String CU = "currentUser";
 	private static final String CUID = "currentUserId";
+	private static final String LOGOUT_JSP = "logout";
+	private static final String UPDATE_PASS_JSP = "update_password";
 	
 	/**
 	 * Autowired constructor to inject services
@@ -67,14 +69,14 @@ public class HomeController {
 	@GetMapping("/")
 	public String showStartPage(HttpSession session, Model model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Collection<? extends GrantedAuthority> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
-		System.out.println(authorities);
+//		Collection<? extends GrantedAuthority> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+//		System.out.println(authorities);
 		
 		User user;
 		try {
 			user = us.getByUsername(((UserDetails)principal).getUsername());
 		} catch (UserNotFoundException e) {
-			MyErrorController.noticeSetup(model, e.getMessage(), "logout", "Logout");
+			MyErrorController.noticeSetup(model, e.getMessage(), LOGOUT_JSP, "Logout");
 			return "notice";
 		}
 		
@@ -104,7 +106,7 @@ public class HomeController {
 	public String showLogoutPage(HttpSession session) {
 		session.removeAttribute(CU);
 		session.removeAttribute(CUID);
-		return "logout";
+		return LOGOUT_JSP;
 	}
 	
 	/**
@@ -115,7 +117,7 @@ public class HomeController {
 	 */
 	@GetMapping("/register")
 	public String showRegisterPage(Model model) {
-		model.addAttribute("newUser", new User());
+		model.addAttribute("user", new UserDTO());
 		return "register";
 	}
 	
@@ -128,9 +130,12 @@ public class HomeController {
 	 */
 	@GetMapping("/account")
 	public String showAccountPage(Model model, HttpSession session) {
-		User user = us.getById((Integer) session.getAttribute(CUID));
-		Account account = as.getById(user.getId());
+		User userDB = us.getById((Integer) session.getAttribute(CUID));
+		Account accountDB = as.getById(userDB.getId());
 		
+		UserDTO user = new UserDTO(userDB);
+		AccountDTO account = new AccountDTO(accountDB);
+				
 		model.addAttribute("User", user);
 		model.addAttribute("Account", account);
 		return "account";
@@ -143,7 +148,7 @@ public class HomeController {
 	 */
 	@GetMapping("/updatePassword")
 	public String showUpdatePasswordPage() {
-		return "update_password";
+		return UPDATE_PASS_JSP;
 	}
 	
 	/**
@@ -167,17 +172,19 @@ public class HomeController {
 	 */
 	@PostMapping("/registerNewUser")
 	public String registerUser(HttpServletRequest request,
-			@Valid @ModelAttribute("newUser") User newUser,
+			@Valid @ModelAttribute("user") UserDTO userDTO,
 			BindingResult result) {
 		
 		Map<String, String[]> paramMap = request.getParameterMap();
 		
-		if (!us.availableUsername(paramMap.get("username")[0])) {
+		if (!us.availableUsername(userDTO.getPassword())) {
 			result.rejectValue("username", "error.user", "Username already taken.");
 		}
 		if (result.hasErrors()) {
 			return "register";
 		}
+
+		User newUser = new User(userDTO.getUsername(), userDTO.getPassword());
 		
 		Account newAcc = new Account(paramMap.get("firstName")[0], paramMap.get("lastName")[0], 
 				paramMap.get("email")[0], paramMap.get("address")[0], paramMap.get("phone")[0], 
@@ -199,9 +206,15 @@ public class HomeController {
 	 * @return string to redirect to account handler
 	 */
 	@PostMapping("/updateAccount")
-	public String updateAccount(HttpSession session, @ModelAttribute("account") Account account) {
+	public String updateAccount(HttpSession session, @ModelAttribute("account") AccountDTO accountDTO) {
 		User user = us.getById((Integer) session.getAttribute(CUID));
-		account.setUserId(user.getId());
+		Account account = as.getById(user.getId());
+		
+		account.setFirstName(accountDTO.getFirstName());
+		account.setLastName(accountDTO.getLastName());
+		account.setEmail(accountDTO.getEmail());
+		account.setAddress(accountDTO.getAddress());
+		account.setPhone(accountDTO.getPhone());
 		
 		as.save(account);
 		
@@ -242,7 +255,7 @@ public class HomeController {
 		try {
 			currentUser = us.getByUsername((String) session.getAttribute(CU));
 		} catch (UserNotFoundException e) {
-			MyErrorController.noticeSetup(model, "You don't exist... How do you not exist?", "logout", "Logout");
+			MyErrorController.noticeSetup(model, "You don't exist... How do you not exist?", LOGOUT_JSP, "Logout");
 			return "notice";
 		}
 		Map<String, String[]> paramMap = request.getParameterMap();
@@ -254,11 +267,11 @@ public class HomeController {
 				return "redirect:/account";
 			}else {
 				model.addAttribute("errorMessage", "Password must be between 4 and 100 characters.");
-				return "update_password";
+				return UPDATE_PASS_JSP;
 			}
 		}
 		
 		model.addAttribute("errorMessage", "Bad Credentials");
-		return "update_password";
+		return UPDATE_PASS_JSP;
 	}
 }

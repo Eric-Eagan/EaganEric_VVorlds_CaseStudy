@@ -110,9 +110,7 @@ public class FileType {
 				return false;
 		} else if (!type.equals(other.type))
 			return false;
-		if (typeId != other.typeId)
-			return false;
-		return true;
+		return typeId == other.typeId;
 	}
 
 	@Override

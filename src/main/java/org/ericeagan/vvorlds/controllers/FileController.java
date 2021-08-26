@@ -58,7 +58,9 @@ public class FileController {
 	 */
 	private static final String CUID = "currentUserId";
 	private static final String FILEDIR = "fileDir";
-	private static final String MESSAGE_JSP = "notice";
+	private static final String NOTICE_JSP = "notice";
+	private static final String FILES_JSP = "files";
+	private static final String DOCUMENTS = "Documents";
 	
 	/**
 	 * Autowired constructor to inject services
@@ -90,7 +92,7 @@ public class FileController {
 		model.addAttribute("ownedFiles", ownedList);
 		model.addAttribute("shareFiles", shareList);
 		
-		return "files";
+		return FILES_JSP;
 	}
 	
 	/**
@@ -133,10 +135,10 @@ public class FileController {
 				outputStream.flush();
 			}
 		} else {
-			MyErrorController.noticeSetup(model, "No file selected", "files", "Documents");
-			return MESSAGE_JSP;
+			MyErrorController.noticeSetup(model, "No file selected", FILES_JSP, DOCUMENTS);
+			return NOTICE_JSP;
 		}
-		MyErrorController.noticeSetup(model, "File uploaded", "files", "Documents");
+		MyErrorController.noticeSetup(model, "File uploaded", FILES_JSP, DOCUMENTS);
 		
 		File dbFile = new File(us.getById((Integer) session.getAttribute(CUID)), 
 						new HashSet<>(), 
@@ -146,7 +148,7 @@ public class FileController {
 		
 		fs.save(dbFile);
 		
-		return MESSAGE_JSP;
+		return NOTICE_JSP;
 	}
 	
 	/**
@@ -195,8 +197,8 @@ public class FileController {
 		try {
 			user = us.getByUsername(username);
 		} catch (UserNotFoundException e) {
-			MyErrorController.noticeSetup(model, "User " + username + " does not exist", "files", "Documents");
-			return MESSAGE_JSP;
+			MyErrorController.noticeSetup(model, "User " + username + " does not exist", FILES_JSP, DOCUMENTS);
+			return NOTICE_JSP;
 		}
 		
 		File file = fs.getById(id);
@@ -207,8 +209,8 @@ public class FileController {
 		us.save(user);
 		fs.save(file);
 		
-		MyErrorController.noticeSetup(model, "File shared with "+username, "files", "Documents");
-		return MESSAGE_JSP;
+		MyErrorController.noticeSetup(model, "File shared with "+username, FILES_JSP, DOCUMENTS);
+		return NOTICE_JSP;
 	}
 	
 	/**
@@ -239,6 +241,12 @@ public class FileController {
 			resource = new UrlResource(path.toUri());
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
+		}
+		if (resource == null) {
+			session.setAttribute("msg", "That file path was strange.");
+			httpServletResponse.setHeader("Location", "/notice");
+			httpServletResponse.setStatus(302);
+			return null;
 		}
 		return ResponseEntity.ok()
 				.contentType(MediaType.parseMediaType("application/octet-stream"))
