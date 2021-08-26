@@ -71,7 +71,7 @@
 						<h2 style="background-color: darkgoldenrod;
 									box-shadow: 4px 4px 0px rgba(0, 0, 0, .5);
 									border: 2px solid black;
-									margin: 10px 50px 10px 50px;">
+									margin: 10px 50px 10px 50px;" id="mydesc">
 							RESOURCES
 						</h2>
 						<div style="display: flex; justify-content:center;">
@@ -87,15 +87,15 @@
 					</div>
 				</div>
 				
-				<table style="width: 100%;">
+				<table style="width: 100%;" aria-describedby="mydesc">
 					<colgroup>
 					    <col span="1" style="width: 5%;">
 				    	<col span="1" style="width: 95%;">
 				    </colgroup>
 			        <thead>
 				        <tr>
-				    		<th>Description</th>
-				   			<th>Video</th>
+				    		<th scope="col">Description</th>
+				   			<th scope="col">Video</th>
 				        </tr>
 			        </thead>
 			        <tbody>

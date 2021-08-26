@@ -23,7 +23,7 @@ public class UserDTO {
 		super();
 	}
 
-	public UserDTO(String username, String password, String passwordConf) {
+	public UserDTO(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;
