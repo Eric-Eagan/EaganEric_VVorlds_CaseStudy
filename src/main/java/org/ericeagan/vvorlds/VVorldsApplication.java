@@ -12,7 +12,8 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class VVorldsApplication {
-
+	private static final String ADMIN_INFO = "admin";
+	
 	public static void main(String[] args) {
 		SpringApplication.run(VVorldsApplication.class, args);
 	}
@@ -26,10 +27,10 @@ public class VVorldsApplication {
 	@Bean
 	public CommandLineRunner insertEmployeeRecords(UserService us) {
 		return args -> {
-			User user = us.getByUsername("admin");
+			User user = us.getByUsername(ADMIN_INFO);
 			
 			if (user == null) {
-				user = new User("admin", "admin");
+				user = new User(ADMIN_INFO, ADMIN_INFO);
 				Account account = new Account();
 				user.setUserRole("ROLE_ADMIN");
 				user.setAccount(account);
