@@ -149,7 +149,7 @@
 			<div class="container">
 				<div class="box-container visible-box">
 					<form method="post"></form>
-					<button class="corner-box">
+					<button id="x-button" class="corner-box">
 						<img src="img/x.png" style="width: 18px; height: 18px;" alt="X">
 					</button>
 					<div class="image-container">
@@ -161,10 +161,10 @@
 				<span class="file-title">Title</span>
 				<div class="button-container">
 					<form method="get">
-						<button class="file-button">Download</button>
+						<button id="download-button" class="file-button">Download</button>
 					</form>
 					<form method="post"></form>
-					<button class="file-button">Share</button>
+					<button id="share-button" class="file-button">Share</button>
 				</div>
 			</div>
 		</div>

@@ -10,7 +10,8 @@ function showOwnedFiles() {
 	}
 	
 	for (let file of ownedList) {
-		fileBlock.appendChild(makeFileDiv(file.id, file.path, file.title, file.fileType));
+		console.log(file);
+		fileBlock.appendChild(makeFileDiv(file.id, file.path, file.title, file.fileType, 1));
 	}
 }
 
@@ -26,11 +27,11 @@ function showSharedFiles() {
 	}
 	
 	for (let file of shareList) {
-		fileBlock.appendChild(makeFileDiv(file.id, file.path, file.title, file.fileType));
+		fileBlock.appendChild(makeFileDiv(file.id, file.path, file.title, file.fileType, 0));
 	}
 }
 
-function makeFileDiv(fileId, path, title, typePath) {
+function makeFileDiv(fileId, path, title, typePath, ownerControl) {
 	let result = document.getElementById('template').cloneNode(true);
 	result.removeAttribute('id');
 	
@@ -42,8 +43,12 @@ function makeFileDiv(fileId, path, title, typePath) {
 	
 	//mover -> delete_button
 	mover = mover.nextElementSibling;
-	mover.setAttribute('onclick', 'deleteFile('+fileId+')');
-	mover.setAttribute('form', '');
+	if(ownerControl === 1) {
+		mover.setAttribute('onclick', 'deleteFile('+fileId+')');
+		mover.setAttribute('form', '');
+	}else {
+		mover.style.setProperty('display', 'none');
+	}
 	
 	//mover -> file_type icon
 	mover = mover.nextElementSibling.firstElementChild;
@@ -65,9 +70,12 @@ function makeFileDiv(fileId, path, title, typePath) {
 	
 	//mover -> share_button
 	mover = mover.nextElementSibling
-	mover.setAttribute('onclick', 'shareFile('+fileId+')');
-	mover.setAttribute('form', '');
-	
+	if(ownerControl === 1) {
+		mover.setAttribute('onclick', 'shareFile('+fileId+')');
+		mover.setAttribute('form', '');
+	}else {
+		mover.style.setProperty('display', 'none');
+	}
 	
 	return result;
 }
