@@ -18,10 +18,6 @@
 			margin-bottom: 5px;
 		}
 		
-		button {
-			float: right;
-		}
-		
 		#FT {
 			display: inline;
 			margin: 0px;
@@ -49,6 +45,19 @@
 		
 		#file:focus {
 			background-color: DarkGoldenrod;
+		}
+		
+		#SBM {
+			border-color: gray;
+		}
+		
+		#SBM:hover {
+			background-color: var(--submit-hover-bckgnd);
+			border-color: var(--submit-hover-brdr);
+		}
+		
+		#SBM:active {
+			background-color: DarkGoldenRod;
 		}
 		
 	</style>
@@ -87,17 +96,24 @@
 					</div>
 					<div class="input_block">
 						<form:label path="fileType">File Type</form:label>
-						<form:select class="select-css" path="fileType" name="fileType" id="FT">
+						<form:select class="select-css" path="fileType" onchange="enableSub()" name="fileType" id="FT">
 							<option value="" disabled selected>Select Type</option>
 							<option value="1">Document</option>
 							<option value="2">Image</option>
 						</form:select>
 					</div>
 					<div class="input_block">
-						<button name="submit" id="SBM">
+						<button name="submit" class="hastooltip" id="SBM" disabled="disabled">
 							- Submit -
+							<span class="tooltiptext">Must select a file type</span>
 						</button>
 					</div>
+					<script>
+						let subButton = document.querySelector("#SBM");
+						subButton.style.setProperty("--submit-hover-bckgnd", "darkgoldenrod");
+						subButton.style.setProperty("--submit-hover-brdr", "gray");
+					</script>
+					<a style="background-color: DarkOliveGreen;" href="/files">Back</a>
 				</form:form>
 			</div>
 		</div>

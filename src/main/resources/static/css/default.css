@@ -149,20 +149,10 @@ button:active {
 	position: absolute;
 	z-index: 1;
 	top: -7px;
-	left: 110%;
+	left: -100%;
 	transition: opacity .5s;
 }
 
-.tooltiptext::after {
-	content: "";
-	position: absolute;
-	top: 50%;
-	right: 100%;
-	margin-top: -5px;
-	border-width: 5px;
-	border-style: solid;
-	border-color: transparent black transparent transparent;
-}
 .hastooltip:hover .tooltiptext {
 	opacity: 1;
 }
