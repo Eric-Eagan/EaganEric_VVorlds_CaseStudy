@@ -3,6 +3,7 @@ package org.ericeagan.vvorlds.selenium;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
+import org.ericeagan.vvorlds.exceptions.UserNotFoundException;
 import org.ericeagan.vvorlds.models.Account;
 import org.ericeagan.vvorlds.models.User;
 import org.ericeagan.vvorlds.services.UserService;
@@ -20,7 +21,7 @@ class AccountTests {
 	private UserService us;
 	
 	@Autowired
-	public AccountTests(WebDriver driver, UserService us) {
+	public AccountTests(WebDriver driver, UserService us) throws UserNotFoundException {
 		this.driver = driver;
 		this.us = us;
 		
@@ -94,7 +95,7 @@ class AccountTests {
 	}
 	
 	@Test
-	void testDeleteAccount() {
+	void testDeleteAccount() throws UserNotFoundException {
 		// Opens the registration page for this web application
 		driver.get("http://localhost:8080/");
 		

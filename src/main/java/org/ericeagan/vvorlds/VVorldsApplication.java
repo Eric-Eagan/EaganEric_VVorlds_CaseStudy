@@ -17,6 +17,12 @@ public class VVorldsApplication {
 		SpringApplication.run(VVorldsApplication.class, args);
 	}
 	
+	/**
+	 * setup default admin account
+	 * 
+	 * @param us UserService for adding to DB
+	 * @return CommandLineRunner
+	 */
 	@Bean
 	public CommandLineRunner insertEmployeeRecords(UserService us) {
 		return args -> {
@@ -32,6 +38,12 @@ public class VVorldsApplication {
 			}		   };
 	}
 	
+	/**
+	 * setup default FileTypes
+	 * 
+	 * @param fts FileTypeService for adding to DB
+	 * @return CommandLineRunner
+	 */
 	@Bean
 	public CommandLineRunner insertFileTypes(FileTypeService fts) {
 		return args -> {

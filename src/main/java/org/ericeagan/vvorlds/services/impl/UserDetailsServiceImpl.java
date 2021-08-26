@@ -9,11 +9,25 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+/**
+ * Implmentation of UserDetailsService of UserDetailsService from SpringFramework
+ * 
+ * @author Eric
+ *
+ */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-
+	
+	/**
+	 * Repository for VVorld User class
+	 */
 	private UserRepository userRepository;
 	
+	/**
+	 * Autowired Constructor to inject UserRepository
+	 * 
+	 * @param userRepository
+	 */
 	@Autowired
 	public UserDetailsServiceImpl(UserRepository userRepository) {
 		this.userRepository = userRepository;

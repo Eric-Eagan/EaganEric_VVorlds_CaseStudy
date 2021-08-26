@@ -14,6 +14,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+/**
+ * Security configuration for VVorlds web app
+ * 
+ * @author Eric
+ *
+ */
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -30,6 +36,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 	
+	/**
+	 * Direct to UserDetailsSErvice and set the password encoder
+	 * @return an AuthenticationProvider
+	 */
 	public AuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
 		daoAuthenticationProvider.setUserDetailsService(userDetailsService);
@@ -37,12 +47,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return daoAuthenticationProvider;
 	}
 	
+	/**
+	 * giving access to javascript, images, css, and scripts
+	 */
 	@Override
 	public void configure(WebSecurity web) {
 		web.ignoring()
 		.antMatchers("/js/**", "/img/**", "/css/**", "/scripts/**");
 	}
 	
+	/**
+	 * Configure security
+	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// CSRF is disabled for simplification and demonstration.

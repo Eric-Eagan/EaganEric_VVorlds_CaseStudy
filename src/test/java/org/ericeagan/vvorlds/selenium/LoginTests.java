@@ -2,6 +2,7 @@ package org.ericeagan.vvorlds.selenium;
 
 import static org.junit.Assert.assertEquals;
 
+import org.ericeagan.vvorlds.exceptions.UserNotFoundException;
 import org.ericeagan.vvorlds.models.Account;
 import org.ericeagan.vvorlds.models.User;
 import org.ericeagan.vvorlds.services.UserService;
@@ -20,7 +21,7 @@ class LoginTests {
 	private UserService us;
 
 	@Autowired
-	public LoginTests(WebDriver driver, UserService us) {
+	public LoginTests(WebDriver driver, UserService us) throws UserNotFoundException {
 		this.driver = driver;
 		this.us = us;
 		
@@ -48,7 +49,7 @@ class LoginTests {
 				"admin,admin,VVorlds"})
 	void testLogin(String username, 
 				   String password,
-				   String expected) {
+				   String expected) throws UserNotFoundException {
 		
 		driver.get("http://localhost:8080/");
 		WebElement usernameInput = driver.findElement(By.cssSelector("#UN"));

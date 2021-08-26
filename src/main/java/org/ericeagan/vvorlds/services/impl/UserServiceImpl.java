@@ -7,6 +7,7 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
+import org.ericeagan.vvorlds.exceptions.UserNotFoundException;
 import org.ericeagan.vvorlds.models.User;
 import org.ericeagan.vvorlds.repositories.UserRepository;
 import org.ericeagan.vvorlds.services.UserService;
@@ -14,14 +15,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+/**
+ * Implementation of UserService
+ * 
+ * @author Eric
+ *
+ */
 @Service
 public class UserServiceImpl implements UserService {
+	/**
+	 * User Repository for accessing DB
+	 */
 	private UserRepository userRepository;
+	
+	/**
+	 * Password Encoder
+	 */
 	private PasswordEncoder pswdEncoder;
 
 	private ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 	private Validator validator = factory.getValidator();
 	
+	/**
+	 * Autowired Constructor for injecting UserRepository and Encoder
+	 * 
+	 * @param userRepository
+	 * @param pswdEncoder
+	 */
 	@Autowired
 	public UserServiceImpl(UserRepository userRepository, PasswordEncoder pswdEncoder) {
 		this.userRepository = userRepository;
@@ -45,8 +65,16 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getByUsername(String username) {
-		return userRepository.getByUsername(username);
+	public User getByUsername(String username) throws UserNotFoundException{
+		User user = userRepository.getByUsername(username);
+		if (user == null) 
+			throw new UserNotFoundException("User "+ username +" not found");
+		return user;
+	}
+	
+	@Override
+	public boolean availableUsername(String username) {
+		return userRepository.getByUsername(username) == null;
 	}
 
 	@Override

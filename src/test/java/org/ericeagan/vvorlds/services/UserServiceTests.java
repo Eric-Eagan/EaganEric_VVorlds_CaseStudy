@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.AdditionalAnswers.returnsFirstArg;
 
+import org.ericeagan.vvorlds.exceptions.UserNotFoundException;
 import org.ericeagan.vvorlds.models.User;
 import org.ericeagan.vvorlds.repositories.UserRepository;
 import org.ericeagan.vvorlds.services.impl.UserServiceImpl;
@@ -61,7 +62,7 @@ class UserServiceTests {
 	}
 	
 	@Test
-	void testGetByUsername() {
+	void testGetByUsername() throws UserNotFoundException {
 		User expected = new User("Test", "testPass");
 		Mockito.when(ur.getByUsername("Test")).thenReturn(
 				expected);

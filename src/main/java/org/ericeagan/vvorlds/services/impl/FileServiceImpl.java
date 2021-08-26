@@ -8,10 +8,24 @@ import org.ericeagan.vvorlds.services.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Implementation of FileService
+ * 
+ * @author Eric
+ *
+ */
 @Service
 public class FileServiceImpl implements FileService {
+	/**
+	 * File Repository for accessing DB
+	 */
 	private FileRepository fr;
 	
+	/**
+	 * Autowired Constructor for injecting File Repository
+	 * 
+	 * @param fr File Repository
+	 */
 	@Autowired
 	public FileServiceImpl(FileRepository fr) {
 		this.fr = fr;

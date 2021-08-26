@@ -1,7 +1,20 @@
 package org.ericeagan.vvorlds.models.dto;
 
+	/**
+	 * DTO for retrieving relevant data from view
+	 * 
+	 * @author Eric
+	 *
+	 */
 public class FileDTO {
+	/**
+	 * Name of the file to visible to users
+	 */
 	String fileName;
+	
+	/**
+	 * id of fileType for this File
+	 */
 	int fileType;
 	
 	public FileDTO() {

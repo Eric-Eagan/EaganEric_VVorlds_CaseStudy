@@ -8,8 +8,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * Controller for handling errors
+ * 
+ * @author Eric
+ *
+ */
 @Controller
 public class MyErrorController implements ErrorController {
+	/**
+	 * error handler, directs to relevant error JSP 
+	 * 
+	 * @param request to get Error code
+	 * @return string of name to relevant error JSP
+	 */
 	@RequestMapping("/error")
 	public String handleError(HttpServletRequest request) {
 	    Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);

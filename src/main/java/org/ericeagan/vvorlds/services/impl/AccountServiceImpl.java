@@ -6,11 +6,24 @@ import org.ericeagan.vvorlds.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Implementation of Account Service
+ * 
+ * @author Eric
+ *
+ */
 @Service
 public class AccountServiceImpl implements AccountService {
-	
+	/**
+	 * Repository for accessing DB
+	 */
 	private AccountRepository accountRepository;
 	
+	/**
+	 * Autowired constructor for injecting Account Repository
+	 * 
+	 * @param accountRepository
+	 */
 	@Autowired
 	public AccountServiceImpl(AccountRepository accountRepository) {
 		this.accountRepository = accountRepository;

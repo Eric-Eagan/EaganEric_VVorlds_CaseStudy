@@ -30,6 +30,7 @@ import java.util.Set;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.ericeagan.vvorlds.exceptions.UserNotFoundException;
 import org.ericeagan.vvorlds.models.File;
 import org.ericeagan.vvorlds.models.User;
 import org.ericeagan.vvorlds.models.dto.FileDTO;
@@ -37,14 +38,35 @@ import org.ericeagan.vvorlds.services.FileService;
 import org.ericeagan.vvorlds.services.FileTypeService;
 import org.ericeagan.vvorlds.services.UserService;
 
+/**
+ * Controller for the files page and the file entities
+ * 
+ * @author Eric
+ *
+ */
 @Controller
 public class FileController {
+	/**
+	 * Services for handling entites in database
+	 */
 	private FileService fs;
 	private FileTypeService fts;
 	private UserService us;
-	private String cuId = "currentUserId";
-	private String fileDir = "fileDir";
 	
+	/**
+	 * string constants
+	 */
+	private static final String CUID = "currentUserId";
+	private static final String FILEDIR = "fileDir";
+	private static final String MESSAGE_JSP = "upload_confirmation";
+	
+	/**
+	 * Autowired constructor to inject services
+	 * 
+	 * @param fs Service for handling File Entities 
+	 * @param fts Service for handling FileType Entities
+	 * @param us Service for handling User Entities
+	 */
 	@Autowired
 	public FileController(FileService fs, FileTypeService fts, UserService us) {
 		this.fs = fs;
@@ -52,10 +74,18 @@ public class FileController {
 		this.us = us;
 	}
 	
+	/**
+	 * Sets up model with Files owned by and shared with current user
+	 * Then directs to the files JSP
+	 * 
+	 * @param session For retrieving the current user
+	 * @param model For assigning the lists of files
+	 * @return the name of files JSP to be sent to view
+	 */
 	@GetMapping("/files")
 	public String showFilesPage(HttpSession session, Model model) {
-		List<File> ownedList = fs.getByOwnerId((Integer) session.getAttribute(cuId));
-		List<File> shareList = fs.getBySharerId((Integer) session.getAttribute(cuId));
+		List<File> ownedList = fs.getByOwnerId((Integer) session.getAttribute(CUID));
+		List<File> shareList = fs.getBySharerId((Integer) session.getAttribute(CUID));
 		
 		model.addAttribute("ownedFiles", ownedList);
 		model.addAttribute("shareFiles", shareList);
@@ -63,17 +93,33 @@ public class FileController {
 		return "files";
 	}
 	
+	/**
+	 * Sets up new file to be uploaded then directs to the upload_file JSP
+	 * 
+	 * @param model For assigning the empty file
+	 * @return the name of upload_file JSP to be sent to view
+	 */
 	@GetMapping("/uploadFile")
-	public String showUploadPage(HttpSession session, Model model) {
+	public String showUploadPage(Model model) {
 		model.addAttribute("newFile", new FileDTO());
 		return "upload_file";
 	}
 	
+	/**
+	 * Downloads file provided and places associated File Entity in database
+	 * 
+	 * @param actualFile is the file to be uploaded
+	 * @param model for returning a message
+	 * @param session for retrieving current user
+	 * @param file DTO for retrieving user input from form
+	 * @return the name of upload_confirmation JSP to be sent to view
+	 * @throws IOException
+	 */
 	@PostMapping("/uploadFile")
 	public String uploadFile(@RequestParam("file") MultipartFile actualFile, Model model, HttpSession session, 
 			@ModelAttribute("newFile")FileDTO file) throws IOException {
 		
-		java.io.File directory = new java.io.File((String)session.getAttribute(fileDir));
+		java.io.File directory = new java.io.File((String)session.getAttribute(FILEDIR));
 		 if (! directory.exists()){
 			directory.mkdir();
 	    }
@@ -81,28 +127,34 @@ public class FileController {
 		if (!Objects.requireNonNull(actualFile, "Image file is null.").isEmpty()) {
 			try(BufferedOutputStream outputStream = new BufferedOutputStream(
 					new FileOutputStream(new java.io.File(
-							(String)session.getAttribute("fileDir"), 
+							(String)session.getAttribute(FILEDIR), 
 							actualFile.getOriginalFilename())))) {
 				outputStream.write(actualFile.getBytes());
 				outputStream.flush();
 			}
 		} else {
 			model.addAttribute("msg", "No file selected");
-			return "upload_confirmation";
+			return MESSAGE_JSP;
 		}
 		model.addAttribute("msg", "File uploaded");
 		
-		File dbFile = new File(us.getById((Integer) session.getAttribute(cuId)), 
+		File dbFile = new File(us.getById((Integer) session.getAttribute(CUID)), 
 						new HashSet<>(), 
 						fts.getById(file.getFileType()),
 						file.getFileName(),
-						(String)session.getAttribute(fileDir) + "\\" + actualFile.getOriginalFilename());
+						(String)session.getAttribute(FILEDIR) + "\\" + actualFile.getOriginalFilename());
 		
 		fs.save(dbFile);
 		
-		return "upload_confirmation";
+		return MESSAGE_JSP;
 	}
 	
+	/**
+	 * Delete file associated with id provided
+	 * 
+	 * @param id of the file in the DB to be deleted
+	 * @return string redirecting to /files handler
+	 */
 	@PostMapping("/delete_file/{id}")
 	public String deleteFile(@PathVariable int id) {
 		File file = fs.getById(id);
@@ -127,13 +179,24 @@ public class FileController {
 		return "redirect:/files";
 	}
 	
+	/**
+	 * Shares file associated with id with user username
+	 * Updates DB to represent this
+	 * 
+	 * @param model for returning a message
+	 * @param id of file to be shared
+	 * @param username of user to be shared with
+	 * @return the name of upload_confirmation JSP to be sent to view
+	 */
 	@PostMapping("/share_file/{id}/{username}")
 	public String shareFile(Model model, @PathVariable int id, @PathVariable String username) {
 		
-		User user = us.getByUsername(username);
-		if (user == null) {
+		User user;
+		try {
+			user = us.getByUsername(username);
+		} catch (UserNotFoundException e) {
 			model.addAttribute("msg", "User " + username + " does not exist");
-			return "upload_confirmation";
+			return MESSAGE_JSP;
 		}
 		
 		File file = fs.getById(id);
@@ -145,9 +208,17 @@ public class FileController {
 		fs.save(file);
 		
 		model.addAttribute("msg", "File shared with "+username);
-		return "upload_confirmation";
+		return MESSAGE_JSP;
 	}
 	
+	/**
+	 * Download file associated with id provided
+	 * 
+	 * @param session for delivering message to other handler
+	 * @param id of file to be downloaded
+	 * @param httpServletResponse for redirecting if needed
+	 * @return ResponseEntity with resource to be downloaded, or null if file not found
+	 */
 	@GetMapping("/download_file/{id}")
 	public ResponseEntity<Resource> downloadFileFromLocal(HttpSession session, @PathVariable int id,
 			HttpServletResponse httpServletResponse) {
@@ -175,10 +246,18 @@ public class FileController {
 				.body(resource);
 	}
 	
+	/**
+	 * Special access to upload_confirmation using session
+	 * Sets up model with message to be displayed, also cleans session of old message
+	 * 
+	 * @param session for accessing message
+	 * @param model assigning message for display
+	 * @return the name of upload_confirmation JSP to be sent to view
+	 */
 	@GetMapping("/upload_confirmation")
 	public String messageDisplay(HttpSession session, Model model) {
 		model.addAttribute("msg", session.getAttribute("msg"));
 		session.removeAttribute("msg");
-		return "upload_confirmation";
+		return MESSAGE_JSP;
 	}
 }
