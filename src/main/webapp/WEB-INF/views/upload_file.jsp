@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,6 +63,14 @@
 		
 	</style>
 	<script type="text/javascript" src="/js/accountForms.js"></script>
+	<script type="text/javascript" src="/js/fileUpload.js"></script>
+	<script>
+		var typeList = [];
+		<c:forEach items="${fileTypes}" var="temp">
+			typeList.push({id: "${temp.typeId}",
+						   type: "${temp.type}"});	
+		</c:forEach>
+	</script>
 </head>
 <body>
 	<div class="container">
@@ -98,8 +107,6 @@
 						<form:label path="fileType">File Type</form:label>
 						<form:select class="select-css" path="fileType" onchange="enableSub()" name="fileType" id="FT">
 							<option value="" disabled selected>Select Type</option>
-							<option value="1">Document</option>
-							<option value="2">Image</option>
 						</form:select>
 					</div>
 					<div class="input_block">
@@ -112,6 +119,8 @@
 						let subButton = document.querySelector("#SBM");
 						subButton.style.setProperty("--submit-hover-bckgnd", "darkgoldenrod");
 						subButton.style.setProperty("--submit-hover-brdr", "gray");
+						
+						addTypes();
 					</script>
 					<a style="background-color: DarkOliveGreen;" href="/files">Back</a>
 				</form:form>

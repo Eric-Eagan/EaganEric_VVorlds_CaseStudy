@@ -10,7 +10,6 @@ function showOwnedFiles() {
 	}
 	
 	for (let file of ownedList) {
-		console.log(file);
 		fileBlock.appendChild(makeFileDiv(file.id, file.path, file.title, file.fileType, 1));
 	}
 }

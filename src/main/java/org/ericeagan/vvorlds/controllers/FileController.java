@@ -33,6 +33,7 @@ import javax.validation.Valid;
 
 import org.ericeagan.vvorlds.exceptions.UserNotFoundException;
 import org.ericeagan.vvorlds.models.File;
+import org.ericeagan.vvorlds.models.FileType;
 import org.ericeagan.vvorlds.models.User;
 import org.ericeagan.vvorlds.models.dto.FileDTO;
 import org.ericeagan.vvorlds.services.FileService;
@@ -105,7 +106,10 @@ public class FileController {
 	 */
 	@GetMapping("/uploadFile")
 	public String showUploadPage(Model model) {
+		List<FileType> fileTypeList = fts.getAllFileTypes();
+		
 		model.addAttribute("newFile", new FileDTO());
+		model.addAttribute("fileTypes", fileTypeList);
 		return "upload_file";
 	}
 	

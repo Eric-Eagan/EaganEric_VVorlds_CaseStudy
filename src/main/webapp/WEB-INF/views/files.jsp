@@ -10,11 +10,6 @@
     <link rel="stylesheet" type="text/css" href="/css/notIndex.css" >
 	<link rel="stylesheet" type="text/css" href="/css/form.css" >
     <script>
-    	function Document(id, path, typeId) {
-    		this.id = id;
-    		
-    	}
-    	
     	var ownedList = [];
     	var shareList = [];
     	<c:forEach items="${ownedFiles}" var="temp">
