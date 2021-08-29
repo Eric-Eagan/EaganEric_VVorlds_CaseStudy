@@ -67,7 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// Allows all requests access to the /login URL
 		.authorizeRequests().antMatchers("/login", "/register", "/registerNewUser").permitAll()
 		// Restrict Admin page to "ADMIN" roles
-		.antMatchers("/admin").hasRole("ADMIN")
+		.antMatchers("/changeFileTypes/**").hasRole("ADMIN")
 		.anyRequest().authenticated()
 		.and()
 		// Redirect to access denied page if access not authorize for user

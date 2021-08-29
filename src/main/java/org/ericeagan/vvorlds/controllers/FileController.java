@@ -49,7 +49,7 @@ import org.ericeagan.vvorlds.services.UserService;
 @Controller
 public class FileController {
 	/**
-	 * Services for handling entites in database
+	 * Services for handling entities in database
 	 */
 	private FileService fs;
 	private FileTypeService fts;

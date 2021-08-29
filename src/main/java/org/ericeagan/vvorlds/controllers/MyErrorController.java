@@ -1,5 +1,7 @@
 package org.ericeagan.vvorlds.controllers;
 
+import static org.ericeagan.vvorlds.controllers.MyErrorController.noticeSetup;
+
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -63,6 +65,18 @@ public class MyErrorController implements ErrorController {
 	public String messageDisplay(HttpSession session, Model model) {
 		MyErrorController.noticeSetup(model, (String) session.getAttribute("msg"), "files", "Documents");
 		session.removeAttribute("msg");
+		return "notice";
+	}
+	
+	/**
+	 * Triggered by accessing a restricted page
+	 * 
+	 * @param model for setting up notice
+	 * @return the name of notice JSP to be sent to view
+	 */
+	@GetMapping("/accessDenied")
+	public String accessDenied(Model model) {
+		noticeSetup(model, "Access Denied", "", "Go Home");
 		return "notice";
 	}
 }

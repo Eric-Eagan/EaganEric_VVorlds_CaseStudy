@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,5 +45,10 @@
 	<div class="container">
 		<h1>VVorlds</h1>
 	</div>
+	<sec:authorize access="hasRole('ADMIN')">
+  	<div class="container">
+  		<%@ include file="html/admin_menu.html" %>
+  	</div>
+	</sec:authorize>
 </body>
 </html>

@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class HomeController {
 	/**
-	 * Services for handling entites in database
+	 * Services for handling entities in database
 	 */
 	private UserService us;
 	private AccountService as;
@@ -69,8 +69,6 @@ public class HomeController {
 	@GetMapping("/")
 	public String showStartPage(HttpSession session, Model model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//		Collection<? extends GrantedAuthority> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
-//		System.out.println(authorities);
 		
 		User user = us.getByUsername(((UserDetails)principal).getUsername());;
 		

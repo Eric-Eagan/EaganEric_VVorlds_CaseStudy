@@ -92,6 +92,11 @@ button:active {
 	z-index: 1;
 }
 
+.admin-menu {
+	width: auto;
+	padding: 0px;
+}
+
 .menu
 .menu_item a img {
 	float: right;
@@ -112,11 +117,21 @@ button:active {
 	margin-left: -26px;
 }
 
+.admin-menu
+.menu_item nav {
+	margin: -70px 0px 0px 0px;
+}
+
 .menu
 .menu_item nav ul {
 	display: flex;
 	flex-wrap: wrap;
 	padding-top: 80px;
+}
+
+.admin-menu
+.menu_item nav ul {
+	padding: 0px;
 }
 
 .menu
