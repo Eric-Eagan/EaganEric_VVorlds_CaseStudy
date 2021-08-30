@@ -69,7 +69,7 @@ public class HomeController {
 	public String showStartPage(HttpSession session, Model model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
-		User user = us.getByUsername(((UserDetails)principal).getUsername());;
+		User user = us.getByUsername(((UserDetails)principal).getUsername());
 		
 		session.setAttribute(CU, user.getUsername());
 		session.setAttribute(CUID, user.getId());

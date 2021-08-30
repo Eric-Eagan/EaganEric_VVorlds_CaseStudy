@@ -240,7 +240,6 @@ public class FileController {
 			HttpServletResponse httpServletResponse) {
 		File file = fs.getById(id);
 		
-		System.out.println(session.getAttribute(FILEDIR) + file.getPath());
 		java.io.File test = new java.io.File(session.getAttribute(FILEDIR) + file.getPath());
 		if (!test.exists()) {
 			session.setAttribute("msg", "That file is missing, sorry. I'll remove it for you.");
