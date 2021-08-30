@@ -24,6 +24,12 @@ import java.util.Objects;
 import org.ericeagan.vvorlds.models.FileType;
 import org.ericeagan.vvorlds.services.FileTypeService;
 
+/**
+ * Controller for handling Admin restricted operations
+ * 
+ * @author Eric
+ *
+ */
 @Controller
 public class AdminController {
 	/**
