@@ -1,7 +1,7 @@
 # VVorlds
 https://github.com/Eric-Eagan/vvorlds
-Web app for file backups, sharing, and storage with a focus on providing support for the designing of fictional worlds.  
-Running project creates a directory in D drive called VVorldsFiles to store uploaded files. This can be modified in the showStartPage Handler of the Homecontroller.
+VVorlds is a web app for file storage, backups, and sharing with a focus on providing support for the designing of fictional worlds.  
+Project creates a directory in D drive called VVorldsFiles to store uploaded files. This can be modified in the showStartPage Handler of the HomeController.
 
 ## User Stories
 ### File Storer
