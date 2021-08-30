@@ -89,6 +89,13 @@ public class AdminController {
 		return "notice";
 	}
 	
+	/**
+	 * Handler for deleting a particular FileType
+	 * 
+	 * @param id of fileType to be deleted
+	 * @return redirect back to changFileTypes handler
+	 * @throws URISyntaxException
+	 */
 	@PostMapping("/changeFileTypes/delete={id}")
 	public String deleteFileType(@PathVariable int id) throws URISyntaxException {
 		FileType doomed = fts.getById(id);
