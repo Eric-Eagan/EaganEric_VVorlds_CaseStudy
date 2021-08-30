@@ -20,9 +20,13 @@ As a user working on building a fictional world I want easier access to helpful 
 As a user with an account I want to be able to have control over what is stored there so that if information changes or is no longer relevant it can be updated to be accurate.
 **Aceptance criteria:** * Provide access to data of users account * Data that is mutable can be updated by user * User can delete account
 
+### FileType Admin 
+As an admin with control over File types I want to be able to interact with the File types, so that users can be provided more organization without downtime.
+**Aceptance criteria:** * Admin can upload new pictures and assign File Type labels to them * Users will be given them alongside default file types when uploading
+
 ### Admin 
-As an admin I want control over resources and the types labels can be called, so that users can be provided more tools without downtime.
-**Aceptance criteria:** * Admin can upload new pictures and assign File Type labels to them * Users will be given them alongside default file types when uploading * Admin will be able to add resource title and link to collection of resources * Add resources will be presented alongside default resources
+As an admin with control over resources I want to be able to interact with the resources, so that users can be provided more resources without downtime.
+**Aceptance criteria:** Admin will be able to add resource options and resource titles/links to the ollection of resources * Added resources will be presented alongside default resources
 
 ## Technical Challenges
 #### Transferring data from Database to Java Objects to Javascript to HTML
