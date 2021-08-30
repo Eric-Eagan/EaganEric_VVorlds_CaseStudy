@@ -1,7 +1,5 @@
 package org.ericeagan.vvorlds.controllers;
 
-import static org.ericeagan.vvorlds.controllers.MyErrorController.noticeSetup;
-
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -63,7 +61,7 @@ public class MyErrorController implements ErrorController {
 	 */
 	@GetMapping("/notice")
 	public String messageDisplay(HttpSession session, Model model) {
-		MyErrorController.noticeSetup(model, (String) session.getAttribute("msg"), "files", "Documents");
+		noticeSetup(model, (String) session.getAttribute("msg"), "files", "Documents");
 		session.removeAttribute("msg");
 		return "notice";
 	}

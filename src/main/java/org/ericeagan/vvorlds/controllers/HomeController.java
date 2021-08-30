@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import org.ericeagan.vvorlds.exceptions.UserNotFoundException;
 import org.ericeagan.vvorlds.models.Account;
 import org.ericeagan.vvorlds.models.User;
 import org.ericeagan.vvorlds.models.dto.AccountDTO;
@@ -244,12 +243,9 @@ public class HomeController {
 	@PostMapping("/updatePassword")
 	public String updatePassword(HttpServletRequest request, HttpSession session, Model model) {
 		User currentUser;
-		try {
-			currentUser = us.getById((Integer) session.getAttribute(CUID));
-		} catch (UserNotFoundException e) {
-			MyErrorController.noticeSetup(model, "You don't exist... How do you not exist?", LOGOUT_JSP, "Logout");
-			return "notice";
-		}
+		
+		currentUser = us.getByUsername((String) session.getAttribute(CU));
+		
 		Map<String, String[]> paramMap = request.getParameterMap();
 		
 		if (us.validatePassword(currentUser, paramMap.get("oldPass")[0])) {
