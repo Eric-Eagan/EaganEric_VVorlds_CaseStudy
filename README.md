@@ -24,7 +24,7 @@ As a user with an account I want to be able to have control over what is stored 
 As an admin with control over File types I want to be able to interact with the File types, so that users can be provided more organization without downtime.
 **Aceptance criteria:** * Admin can upload new pictures and assign File Type labels to them * Users will be given them alongside default file types when uploading
 
-### Admin 
+### Resources Admin 
 As an admin with control over resources I want to be able to interact with the resources, so that users can be provided more resources without downtime.
 **Aceptance criteria:** Admin will be able to add resource options and resource titles/links to the ollection of resources * Added resources will be presented alongside default resources
 
