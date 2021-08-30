@@ -22,21 +22,31 @@ function loadFileTypes() {
 			typeCell.innerHTML = type.name;
 			let deleteCell = document.createElement('td');
 			let deleteForm = document.createElement('form');
-			deleteForm.setAttribute('name', 'deleteForm');
+			deleteForm.setAttribute('name', 'deleteForm'+type.id);
+			deleteForm.setAttribute('id', 'deleteForm'+type.id);
 			deleteForm.setAttribute('method', 'post');
 			deleteForm.setAttribute('action', 'changeFileTypes/delete='+type.id);
 			let deleteButton = document.createElement('button');
 			deleteButton.innerHTML = 'Delete Type';
+			deleteButton.setAttribute('onclick', 'deleteType('+type.id+')');
+			deleteButton.setAttribute('id', 'deleteButton'+type.id);
 			deleteButton.setAttribute('type', 'submit');
 	
 			newRow.appendChild(imgCell);
 			imgCell.appendChild(image);
 			newRow.appendChild(typeCell);
 			newRow.appendChild(deleteCell);
-			deleteForm.appendChild(deleteButton);
 			deleteCell.appendChild(deleteForm);
+			deleteCell.appendChild(deleteButton);
 			tableBody.appendChild(newRow);
 		}
 		
+	}
+}
+
+function deleteType(id) {
+	let button = document.getElementById('deleteButton'+id);
+	if (confirm('Delete this File Type?')) {
+		button.setAttribute('form', 'deleteForm'+id);
 	}
 }

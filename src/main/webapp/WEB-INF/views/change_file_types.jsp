@@ -125,6 +125,12 @@
 			    
 				<div style="display: flex; justify-content:center; margin: 20px 0px 15px 0px;">
 					<div class="form_container" style="width: 350px;">
+						<h2 style="background-color: darkgoldenrod;
+									box-shadow: 4px 4px 0px rgba(0, 0, 0, .5);
+									border: 2px solid black;
+									margin: 10px 50px 10px 50px;" id="mydesc">
+							ADD FILE TYPE
+						</h2>
 						<form name="typeForm" id="typeForm" action="changeFileTypes/add" method="post"
 							style="display:flex; flex-direction: column; padding-bottom:10px"
 							enctype="multipart/form-data">
